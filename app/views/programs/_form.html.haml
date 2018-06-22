@@ -1,0 +1,9 @@
+.form
+  = simple_form_for(@program) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :name
+      = f.input :full_form
+      = f.input :comments
+    .form-actions
+      = f.button :submit

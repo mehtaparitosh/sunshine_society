@@ -1,0 +1,8 @@
+%h1 Hi Pupils, Learners, Bastards!
+
+- @sponsors.each do |sponsor|
+	%p= link_to sponsor.name, sponsor_path(sponsor)
+
+= link_to "Back", root_path
+|
+= link_to "Add Sponsor", new_sponsor_path

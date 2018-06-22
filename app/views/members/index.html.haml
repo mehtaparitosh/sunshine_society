@@ -1,0 +1,6 @@
+%h1 Hi Pupils, Learners, Bastards!
+
+- @members.each do |member|
+	%p= link_to member.name, member_path(member)
+
+= link_to 'Back', root_path

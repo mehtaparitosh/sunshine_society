@@ -1,0 +1,17 @@
+.signin
+  .w3-card-4.form
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      %h3.w3-center Enter Credentials
+      .form-inputs
+        .email.w3-row.w3-section
+          .w3-col.l2.m2.s2
+            %i.fa.fa-envelope
+          .w3-col.l10.m10.s10
+            = f.input :email, label: false, placeholder: "Email", required: false, autofocus: true
+        .password.w3-row.w3-section
+          .w3-col.l2.m2.s2
+            %i.fa.fa-eye-slash
+          .w3-col.l10.m10.s10
+            = f.input :password, label: false, placeholder: "Password", required: false
+      .form-actions.btn-sign-in
+        = f.button :submit, "Log in", class: "w3-btn w3-round-large"

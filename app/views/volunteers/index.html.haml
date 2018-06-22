@@ -1,0 +1,8 @@
+%h1 Hi Pupils, Learners, Bastards!
+
+- @volunteers.each do |volunteer|
+	%p= link_to volunteer.name, volunteer_path(volunteer)
+
+= link_to "Add Volunteer", new_volunteer_path
+|
+= link_to "Back", root_path 

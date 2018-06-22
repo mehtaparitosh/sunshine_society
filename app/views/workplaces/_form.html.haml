@@ -1,0 +1,8 @@
+= simple_form_for(@volunteer_school) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :active
+    = f.input :school_id
+    = f.input :voluneer_id
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,9 @@
+= simple_form_for(@employee_workplace) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
+    = f.input :employee_id ,:collection => @employees,:label_method => em_id,:value_method => :id, prompt: "Select Employee ID", :label => "Employee ID" ,:include_blank => false
+    = f.input :workplace_id ,:collection => @workplaces,:label_method => :name,:value_method => :id, prompt: "Select Workplace", :label => "Workplace" ,:include_blank => false
+  .form-actions
+  %br
+    = f.button :submit

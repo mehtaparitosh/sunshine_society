@@ -1,0 +1,2 @@
+module StudentSponsorsHelper
+end

@@ -1,0 +1,7 @@
+%h1 Hi Pupils, Learners, Bastards!
+
+- @mentors.each do |mentor|
+	%p= link_to mentor.name, mentor_path(mentor)
+= link_to 'Back', root_path
+|
+= link_to "New Mentor", new_mentor_path

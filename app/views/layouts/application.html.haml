@@ -1,0 +1,40 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title SunshineSociety
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{:href => "https://www.w3schools.com/w3css/4/w3.css", :rel => "stylesheet"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/assets/ss-logo.ico", :rel => "shortcut icon"}/
+
+  %body
+    -# Navbar
+    %nav.w3-top
+      .w3-bar.color.w3-card-4
+        = link_to image_tag('ss-logo.jpg', class: "nav-logo-img w3-image w3-padding-small")
+        %p.ss Sunshine Society
+        - if user_signed_in?
+          .nav-search.w3-hide-small
+            -# = form_tag dashboard_path, :method => 'get' do
+              -# %p.nav-search-form
+            = text_field_tag :search, params[:search], placeholder: "Search ID"
+          .dropdown.w3-dropdown-hover.w3-hide-small
+            %button.w3-padding-large.w3-button{:title => "More"}
+              MORE
+              %i.fa.fa-caret-down
+            .w3-dropdown-content.w3-bar-block.w3-card-4
+              = link_to 'Logout', destroy_user_session_path, method: :delete, class: "w3-bar-item w3-button"
+              = link_to "Home", root_path, class: "w3-bar-item w3-button"
+          %a.bars.w3-padding-large.w3-hide-medium.w3-hide-large{:href=>"#",:onlclick=>"myFunction()", :title=>"Toggle Navigation Menu"}
+            %i.fa.fa-bars
+    .w3-bar-block.w3-black.w3-hide.w3-hide-large.w3-hide-medium.w3-top.navDemo{:style => "margin-top:76px"}
+      = link_to 'Logout', destroy_user_session_path, method: :delete, class: "w3-bar-item w3-button"
+      = link_to "Home", root_path, class: "w3-bar-item w3-button"
+
+    .container
+      %p.notice.w3-panel.w3-center= notice
+      %p.alert.w3-panel.w3-center= alert
+      = yield

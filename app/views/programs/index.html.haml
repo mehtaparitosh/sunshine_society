@@ -1,0 +1,6 @@
+%h1 Hi Pupils, Learners, Bastards!
+
+- @programs.each do |program|
+	%p= link_to program.name, program_path(program)
+
+= link_to "Add Program", new_program_path

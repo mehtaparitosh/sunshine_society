@@ -1,0 +1,106 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "font-awesome";
+
+  //Remove Browser Styling
+  input {
+     outline: none;
+     border: none;
+     // background-color:transparent;
+  }
+
+
+  .container {
+    padding: 100px 10px 0px 10px;
+    max-width: 1170px;
+    margin: auto;
+    color: #333;
+  }
+
+  .notice {
+    color : green;
+  }
+
+ nav {
+   background-color: #333;
+   color: #e7e7e7;
+ }
+ .w3-bar {
+   display: flex;
+   .nav-logo-img {
+     max-width: 70px;
+     margin: 5px 5px 5px 20px;
+   }
+   .ss {
+     padding-top: 10px;
+   }
+   .fa-bars {
+     font-size: 35px;
+   }
+   .bars {
+     align-self: flex-end;
+     margin: 0 0 10px auto !important;
+   }
+   .nav-search {
+     align-self: flex-end;
+     margin: 0 10px 23px auto !important;
+     input {
+       border-radius: 5px;
+       padding: 5px;
+     }
+   }
+   .dropdown {
+     margin: 14px 30px 10px 10px;
+   }
+ }
+
+ .signin {
+   display: -ms-flexbox;
+ 	display: -webkit-flex;
+ 	display: flex;
+   .form {
+     padding: 25px;
+     margin: auto;
+     .form-inputs {
+       input {
+         border-radius: 5px;
+         height: 35px;
+       }
+     }
+     .form-actions {
+       display: -ms-flexbox;
+       display: -webkit-flex;
+       display: flex;
+       input {
+         margin: 5px auto;
+         width: 50%;
+         border: 0.3px solid grey;
+         font-size: 20px;
+       }
+     }
+   }
+   i {
+     font-size: 32px;
+     padding-right: 10px;
+   }
+ }
+
+.form {
+  input {
+    border: 1px solid grey;
+  }
+
+}

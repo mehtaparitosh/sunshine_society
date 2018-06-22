@@ -1,0 +1,10 @@
+= simple_form_for(@student_program) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
+    = f.input :student_id ,:collection => @students,:label_method => :st_id,:value_method => :id, prompt: "Select Student ID", :label => "Student ID" ,:include_blank => false
+    = f.input :program_id ,:collection => @programs,:label_method => :name,:value_method => :id, prompt: "Select Program", :label => "Program" ,:include_blank => false
+
+  .form-actions
+  %br
+    = f.button :submit

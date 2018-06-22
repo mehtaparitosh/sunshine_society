@@ -1,0 +1,9 @@
+= simple_form_for(@volunteer_school) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
+    = f.input :volunteer_id ,:collection => @volunteers,:label_method => :vol_id,:value_method => :id, prompt: "Select Volunteer ID", :label => "Volunteer ID" ,:include_blank => false
+    = f.input :school_id ,:collection => @schools,:label_method => :name,:value_method => :id, prompt: "Select School", :label => "School" ,:include_blank => false
+  .form-actions
+  %br
+    = f.button :submit

@@ -1,0 +1,76 @@
+%h1= "#{@student.st_id}: #{@student.name}"
+
+%p= link_to "Back", students_path, class: "btn btn-nav"
+%p= link_to "Edit", edit_student_path(@student), class: "btn btn-nav"
+
+%hr	
+
+%h4 Coordinators
+%small= link_to "Add Coordinator", new_student_coordinator_path(student_id: @student.id)
+- @student_coordinators.each do |student_coordinator|
+	%p
+		= student_coordinator.coordinator.name
+		|
+		= student_coordinator.active
+		| 
+		= link_to "Edit", edit_student_coordinator_path(student_coordinator, student_id: @student.id)
+%hr
+%h4 Mentors
+%small= link_to "Add Mentor", new_student_mentor_path(student_id: @student.id)
+- @student_mentors.each do |student_mentor|
+	%p
+		= student_mentor.mentor.name
+		|
+		= student_mentor.active
+		| 
+		= link_to "Edit", edit_student_mentor_path(student_mentor, student_id: @student.id)
+%hr
+%h4 Programs
+%small= link_to "Add Program", new_student_program_path(student_id: @student.id)
+- @student_programs.each do |student_program|
+	%p
+		= student_program.program.name
+		|
+		= student_program.active
+		| 
+		= link_to "Edit", edit_student_program_path(student_program, student_id: @student.id)
+%hr
+%h4 Schools
+%small= link_to "Add School", new_student_school_path(student_id: @student.id)
+- @student_schools.each do |student_school|
+	%p
+		= student_school.school.name
+		|
+		= student_school.active
+		| 
+		= link_to "Edit", edit_student_school_path(student_school, student_id: @student.id)
+%hr
+%h4 Sponsors
+%small= link_to "Add Sponsor", new_student_sponsor_path(student_id: @student.id)
+- @student_sponsors.each do |student_sponsor|
+	%p
+		= student_sponsor.sponsor.name
+		|
+		= student_sponsor.active
+		| 
+		= link_to "Edit", edit_student_sponsor_path(student_sponsor, student_id: @student.id)
+%hr
+%h4 After School Support
+%small= link_to "Add After School Support", new_student_support_path(student_id: @student.id)
+- @student_supports.each do |student_support|
+	%p
+		= student_support.support.name
+		|
+		= student_support.active
+		| 
+		= link_to "Edit", edit_student_support_path(student_support, student_id: @student.id)
+%hr
+%h4 Volunteers
+%small= link_to "Add Volunteer", new_student_volunteer_path(student_id: @student.id)
+- @student_volunteers.each do |student_volunteer|
+	%p
+		= student_volunteer.volunteer.name
+		|
+		= student_volunteer.active
+		| 
+		= link_to "Edit", edit_student_volunteer_path(student_volunteer, student_id: @student.id)

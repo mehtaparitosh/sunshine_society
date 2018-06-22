@@ -1,0 +1,9 @@
+= simple_form_for(@member_designation) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
+    = f.input :member_id ,:collection => @members,:label_method => mem_id,:value_method => :id, prompt: "Select Member ID", :label => "Member ID" ,:include_blank => false
+    = f.input :designation_id ,:collection => @designations,:label_method => :name,:value_method => :id, prompt: "Select Designation", :label => "Designation" ,:include_blank => false
+  .form-actions
+  %br
+    = f.button :submit

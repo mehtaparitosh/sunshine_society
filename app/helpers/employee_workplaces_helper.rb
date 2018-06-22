@@ -1,0 +1,2 @@
+module EmployeeWorkplacesHelper
+end

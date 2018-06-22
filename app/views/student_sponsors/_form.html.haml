@@ -1,0 +1,17 @@
+= simple_form_for(@student_sponsor) do |f|
+  = f.error_notification
+  .form-inputs
+    / = f.input :active
+    = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
+    / = f.input :student_id
+    = f.input :student_id ,:collection => @students,:label_method => :st_id,:value_method => :id, prompt: "Select Student ID", :label => "Student ID" ,:include_blank => false
+    / = f.input :sponsor_id
+    = f.input :sponsor_id ,:collection => @sponsors,:label_method => :sp_id,:value_method => :id, prompt: "Select Sponsor ID", :label => "Sponsor ID" ,:include_blank => false
+    = f.input :academic_year
+    / Full or Half
+    / = f.input :sponsor_type
+    = f.input :sponsor_type, as: :radio_buttons, collection: [['full', 'Full'], ['partial', 'Partial']], label_method: :second, value_method: :first, required: true
+
+  .form-actions
+  %br
+    = f.button :submit

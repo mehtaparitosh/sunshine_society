@@ -1,0 +1,7 @@
+= simple_form_for(@designation) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name
+    = f.input :comments
+  .form-actions
+    = f.button :submit

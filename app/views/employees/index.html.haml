@@ -1,0 +1,6 @@
+%h1 Hi Pupils, Learners, Bastards!
+
+- @employees.each do |employee|
+	%p= link_to employee.name, employee_path(employee)
+
+= link_to 'Back', root_path
