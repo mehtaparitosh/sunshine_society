@@ -1,15 +1,17 @@
-= simple_form_for(@student_coordinator) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
-    = f.input :student_id ,:collection => @students,:label_method => :st_id,:value_method => :id, prompt: "Select Student ID", :label => "Student ID" ,:include_blank => false
-    = f.input :coordinator_id ,:collection => @coordinators,:label_method => :co_id,:value_method => :id, prompt: "Select Coordinator's ID", :label => "Coordinator's ID" ,:include_blank => false
-
-  .form-actions
-  %br
-    -if @student
-      = f.button :submit, name: "student_id", value: @student.id, value: "Submit"
-    - elsif @coordinator
-      = f.button :submit, name: "coordinator_id", value: @coordinator.id, value: "Submit"
-    - else
-      = f.button :submit
+.form
+  = simple_form_for(@student_coordinator) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
+      = f.input :start, as: :date, html5: true
+      = f.input :end, as: :date, html5: true
+      = f.input :student_id ,:collection => @students,:label_method => :collection_values ,:value_method => :id, prompt: "Select Student ID", :label => "Student ID" ,:include_blank => false
+      = f.input :coordinator_id ,:collection => @coordinators,:label_method => :collection_values,:value_method => :id, prompt: "Select Coordinator's ID", :label => "Coordinator's ID" ,:include_blank => false
+    .form-actions
+    %br
+      -if @student
+        = f.button :submit, name: "student_id", value: @student.id, value: "Submit"
+      - elsif @coordinator
+        = f.button :submit, name: "coordinator_id", value: @coordinator.id, value: "Submit"
+      - else
+        = f.button :submit

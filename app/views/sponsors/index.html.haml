@@ -1,8 +1,7 @@
-%h1 Hi Pupils, Learners, Bastards!
-
-- @sponsors.each do |sponsor|
-	%p= link_to sponsor.name, sponsor_path(sponsor)
+%h1.w3-center SPONSORS
 
 = link_to "Back", root_path
 |
 = link_to "Add Sponsor", new_sponsor_path
+- @sponsors.each do |sponsor|
+	%p= link_to sponsor.name, sponsor_path(sponsor)

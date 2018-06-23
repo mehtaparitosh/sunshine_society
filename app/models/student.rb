@@ -14,4 +14,9 @@ class Student < ApplicationRecord
 	has_many :student_sponsors
 	has_many :student_supports
 	has_many :student_volunteers
+
+
+	def collection_values
+  	"#{st_id} : #{name}"
+  end
 end

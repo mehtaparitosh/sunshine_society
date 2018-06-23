@@ -1,8 +1,11 @@
-%h1 Hi Pupils, Learners, Bastards!
+%h1.w3-center SCHOOLS
+
+
+
+= link_to "Back", root_path
+|
+= link_to "Add School", new_school_path
+
 
 - @schools.each do |school|
 	%p= link_to school.name, school_path(school)
-
-= link_to "Add School", new_school_path
-|
-= link_to "Back", root_path

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_22_164004) do
+ActiveRecord::Schema.define(version: 2018_06_23_121803) do
 
   create_table "coordinators", force: :cascade do |t|
     t.string "co_id"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2018_06_22_164004) do
     t.integer "designation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start"
+    t.date "end"
     t.index ["designation_id"], name: "index_employee_designations_on_designation_id"
     t.index ["employee_id"], name: "index_employee_designations_on_employee_id"
   end
@@ -54,6 +56,8 @@ ActiveRecord::Schema.define(version: 2018_06_22_164004) do
     t.integer "workplace_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start"
+    t.date "end"
     t.index ["employee_id"], name: "index_employee_workplaces_on_employee_id"
     t.index ["workplace_id"], name: "index_employee_workplaces_on_workplace_id"
   end
@@ -88,6 +92,8 @@ ActiveRecord::Schema.define(version: 2018_06_22_164004) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "member_id"
+    t.date "start"
+    t.date "end"
     t.index ["designation_id"], name: "index_member_designations_on_designation_id"
     t.index ["member_id"], name: "index_member_designations_on_member_id"
   end
@@ -165,6 +171,8 @@ ActiveRecord::Schema.define(version: 2018_06_22_164004) do
     t.integer "program_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start"
+    t.date "end"
     t.index ["program_id"], name: "index_sponsor_programs_on_program_id"
     t.index ["sponsor_id"], name: "index_sponsor_programs_on_sponsor_id"
   end
@@ -196,6 +204,8 @@ ActiveRecord::Schema.define(version: 2018_06_22_164004) do
     t.integer "coordinator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start"
+    t.date "end"
     t.index ["coordinator_id"], name: "index_student_coordinators_on_coordinator_id"
     t.index ["student_id"], name: "index_student_coordinators_on_student_id"
   end
@@ -206,6 +216,8 @@ ActiveRecord::Schema.define(version: 2018_06_22_164004) do
     t.integer "mentor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start"
+    t.date "end"
     t.index ["mentor_id"], name: "index_student_mentors_on_mentor_id"
     t.index ["student_id"], name: "index_student_mentors_on_student_id"
   end
@@ -216,6 +228,8 @@ ActiveRecord::Schema.define(version: 2018_06_22_164004) do
     t.integer "program_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start"
+    t.date "end"
     t.index ["program_id"], name: "index_student_programs_on_program_id"
     t.index ["student_id"], name: "index_student_programs_on_student_id"
   end
@@ -229,6 +243,8 @@ ActiveRecord::Schema.define(version: 2018_06_22_164004) do
     t.datetime "updated_at", null: false
     t.integer "student_id"
     t.integer "school_id"
+    t.date "start"
+    t.date "end"
     t.index ["school_id"], name: "index_student_schools_on_school_id"
     t.index ["student_id"], name: "index_student_schools_on_student_id"
   end
@@ -241,6 +257,8 @@ ActiveRecord::Schema.define(version: 2018_06_22_164004) do
     t.integer "sponsor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start"
+    t.date "end"
     t.index ["sponsor_id"], name: "index_student_sponsors_on_sponsor_id"
     t.index ["student_id"], name: "index_student_sponsors_on_student_id"
   end
@@ -251,6 +269,8 @@ ActiveRecord::Schema.define(version: 2018_06_22_164004) do
     t.integer "support_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start"
+    t.date "end"
     t.index ["student_id"], name: "index_student_supports_on_student_id"
     t.index ["support_id"], name: "index_student_supports_on_support_id"
   end
@@ -261,6 +281,8 @@ ActiveRecord::Schema.define(version: 2018_06_22_164004) do
     t.integer "volunteer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start"
+    t.date "end"
     t.index ["student_id"], name: "index_student_volunteers_on_student_id"
     t.index ["volunteer_id"], name: "index_student_volunteers_on_volunteer_id"
   end
@@ -333,6 +355,8 @@ ActiveRecord::Schema.define(version: 2018_06_22_164004) do
     t.integer "volunteer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start"
+    t.date "end"
     t.index ["school_id"], name: "index_volunteer_schools_on_school_id"
     t.index ["volunteer_id"], name: "index_volunteer_schools_on_volunteer_id"
   end

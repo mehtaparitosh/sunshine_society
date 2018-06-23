@@ -1,7 +1,8 @@
 %h1= "#{@student.st_id}: #{@student.name}"
 
-%p= link_to "Back", students_path, class: "btn btn-nav"
-%p= link_to "Edit", edit_student_path(@student), class: "btn btn-nav"
+= link_to "Back", students_path, class: "btn btn-nav"
+|
+= link_to "Edit", edit_student_path(@student), class: "btn btn-nav"
 
 %hr	
 
@@ -9,7 +10,7 @@
 %small= link_to "Add Coordinator", new_student_coordinator_path(student_id: @student.id)
 - @student_coordinators.each do |student_coordinator|
 	%p
-		= student_coordinator.coordinator.name
+		= link_to student_coordinator.coordinator.name, coordinator_path(student_coordinator.coordinator_id)
 		|
 		= student_coordinator.active
 		| 
@@ -19,7 +20,7 @@
 %small= link_to "Add Mentor", new_student_mentor_path(student_id: @student.id)
 - @student_mentors.each do |student_mentor|
 	%p
-		= student_mentor.mentor.name
+		= link_to student_mentor.mentor.name, mentor_path(student_mentor.mentor_id)
 		|
 		= student_mentor.active
 		| 
@@ -29,7 +30,7 @@
 %small= link_to "Add Program", new_student_program_path(student_id: @student.id)
 - @student_programs.each do |student_program|
 	%p
-		= student_program.program.name
+		= link_to student_program.program.name, program_path(student_program.program_id)
 		|
 		= student_program.active
 		| 
@@ -39,7 +40,7 @@
 %small= link_to "Add School", new_student_school_path(student_id: @student.id)
 - @student_schools.each do |student_school|
 	%p
-		= student_school.school.name
+		= link_to student_school.school.name, school_path(student_school.school_id)
 		|
 		= student_school.active
 		| 
@@ -49,7 +50,7 @@
 %small= link_to "Add Sponsor", new_student_sponsor_path(student_id: @student.id)
 - @student_sponsors.each do |student_sponsor|
 	%p
-		= student_sponsor.sponsor.name
+		= link_to student_sponsor.sponsor.name, sponsor_path(student_sponsor.sponsor_id)
 		|
 		= student_sponsor.active
 		| 
@@ -59,7 +60,7 @@
 %small= link_to "Add After School Support", new_student_support_path(student_id: @student.id)
 - @student_supports.each do |student_support|
 	%p
-		= student_support.support.name
+		= link_to student_support.support.name, support_path(student_support.support_id)
 		|
 		= student_support.active
 		| 
@@ -69,7 +70,7 @@
 %small= link_to "Add Volunteer", new_student_volunteer_path(student_id: @student.id)
 - @student_volunteers.each do |student_volunteer|
 	%p
-		= student_volunteer.volunteer.name
+		= link_to student_volunteer.volunteer.name, volunteer_path(student_volunteer.volunteer_id)
 		|
 		= student_volunteer.active
 		| 
