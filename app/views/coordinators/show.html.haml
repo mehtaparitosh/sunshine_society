@@ -2,3 +2,14 @@
 = link_to 'Back', coordinators_path
 |
 = link_to "Edit", edit_coordinator_path(@coordinator)
+
+%hr
+%h4 Students
+%small= link_to "Add Students", new_student_coordinator_path(coordinator_id: @coordinator.id)
+- @student_coordinators.each do |student_coordinator|
+	%p
+		= link_to student_coordinator.student.name, student_path(student_coordinator.student_id)
+		|
+		= student_coordinator.active
+		| 
+		= link_to "Edit", edit_student_coordinator_path(student_coordinator, coordinator_id: @coordinator.id)

@@ -1,4 +1,4 @@
-Wclass WorkplacesController < ApplicationController
+class WorkplacesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_workplace, only: [:show, :edit, :update, :destroy]
 
@@ -7,7 +7,8 @@ Wclass WorkplacesController < ApplicationController
   end
 
   def show
-    # @volunteer_workplaces = Volunteerworkplace.where("workplace_id = ?", params[:id])
+    @employee_workplaces = EmployeeWorkplace.where("workplace_id = ?", params[:id])
+
   end
 
   def new

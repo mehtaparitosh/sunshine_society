@@ -7,7 +7,8 @@ class SchoolsController < ApplicationController
   end
 
   def show
-    # @volunteer_schools = Volunteerschool.where("school_id = ?", params[:id])
+    @student_schools = StudentSchool.where("school_id = ?", params[:id])
+    @volunteer_schools = VolunteerSchool.where("school_id = ?", params[:id])
   end
 
   def new

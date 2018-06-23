@@ -3,14 +3,24 @@ class StudentSchoolsController < ApplicationController
   before_action :set_student_school, only: [:edit, :update, :destroy]
 
   def new
-    @student = Student.find(params[:student_id])
+    if params[:student_id] 
+      @student = Student.find(params[:student_id])
+    elsif params[:school_id] 
+      @school = School.find(params[:school_id])
+    else
+    end  
     @students = Student.all
     @schools = School.all
     @student_school = StudentSchool.new
   end
 
   def edit
-    @student = Student.find(params[:student_id])
+    if params[:student_id] 
+      @student = Student.find(params[:student_id])
+    elsif params[:school_id] 
+      @school = School.find(params[:school_id])
+    else
+    end 
     @students = Student.all
     @schools = School.all
   end
@@ -21,8 +31,15 @@ class StudentSchoolsController < ApplicationController
     respond_to do |format|
       if @student_school.save
         format.html { 
-          @student = Student.find(@student_school.student_id)
-          redirect_to @student, notice: 'Student School was successfully created.' 
+          if params[:student_id] 
+            @student = Student.find(@student_school.student_id)
+            redirect_to @student, notice: 'Student school was successfully created.'
+          elsif params[:school_id] 
+            @school = School.find(@student_school.school_id)
+            redirect_to @school, notice: 'Student school was successfully created.'
+          else
+            redirect_to root_path, notice: 'Student school was successfully created.'
+          end   
         }
         format.json { render :show, status: :created, location: @student_school }
       else
@@ -36,8 +53,15 @@ class StudentSchoolsController < ApplicationController
     respond_to do |format|
       if @student_school.update(student_school_params)
         format.html { 
-          @student = Student.find(@student_school.student_id)
-          redirect_to @student_school, notice: 'Student School was successfully updated.' 
+          if params[:student_id] 
+            @student = Student.find(@student_school.student_id)
+            redirect_to @student, notice: 'Student school was successfully created.'
+          elsif params[:school_id] 
+            @school = School.find(@student_school.school_id)
+            redirect_to @school, notice: 'Student school was successfully created.'
+          else
+            redirect_to root_path, notice: 'Student school was successfully created.'
+          end  
         }
         format.json { render :show, status: :ok, location: @student_school }
       else

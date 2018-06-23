@@ -7,7 +7,8 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    # @volunteer_employees = Volunteeremployee.where("employee_id = ?", params[:id])
+    @employee_designations = EmployeeDesignation.where("employee_id = ?", params[:id])
+    @employee_workplaces = EmployeeWorkplace.where("employee_id = ?", params[:id])
   end
 
   def new
@@ -22,7 +23,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        @employee.st_id = "SS-EM-#{@employee.id}"
+        @employee.st_em = "SS-EM-#{@employee.id}"
         @employee.save
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
         format.json { render :show, status: :created, location: @employee }
@@ -56,7 +57,7 @@ class EmployeesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_employee
-      @employee = employee.find(params[:id])
+      @employee = Employee.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

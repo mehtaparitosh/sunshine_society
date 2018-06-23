@@ -1,2 +1,26 @@
 %h1= @designation.name
-= link_to 'Back', designation_path
+= link_to 'Back', designations_path
+|
+= link_to 'Edit', edit_designation_path
+
+%hr
+%h4 Members
+%small= link_to "Add Members", new_member_designation_path(designation_id: @designation.id)
+- @member_designations.each do |member_designation|
+	%p
+		= link_to member_designation.member.name, member_path(member_designation.member_id)
+		|
+		= member_designation.active
+		| 
+		= link_to "Edit", edit_member_designation_path(member_designation, designation_id: @designation.id)
+
+%hr
+%h4 Employees
+%small= link_to "Add Employees", new_employee_designation_path(designation_id: @designation.id)
+- @employee_designations.each do |employee_designation|
+	%p
+		= link_to employee_designation.employee.name, employee_path(employee_designation.employee_id)
+		|
+		= employee_designation.active
+		| 
+		= link_to "Edit", edit_employee_designation_path(employee_designation, designation_id: @designation.id)

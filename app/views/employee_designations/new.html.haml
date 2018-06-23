@@ -1,3 +1,11 @@
 %h1 Designation of Employee
+-if params[:employee_id] 
+	%h4= "#{@employee.em_id}: #{@employee.name}"
+- elsif params[:designation_id]
+	%h4= "#{@designation.name}"
+- else
 = render 'form'
-= link_to 'Back', employees_path
+- if params[:employee_id] 
+	= link_to "Cancel", employee_path(@employee)
+- elsif params[:designation_id]
+	= link_to "Cancel", designation_path(@designation)

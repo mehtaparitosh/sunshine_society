@@ -7,7 +7,8 @@ class DesignationsController < ApplicationController
   end
 
   def show
-    # @volunteer_designations = Volunteerdesignation.where("designation_id = ?", params[:id])
+    @member_designations = MemberDesignation.where("designation_id = ?", params[:id])
+    @employee_designations = EmployeeDesignation.where("designation_id = ?", params[:id])
   end
 
   def new

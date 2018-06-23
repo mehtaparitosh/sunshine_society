@@ -1,6 +1,8 @@
 %h1 Hi Pupils, Learners, Bastards!
-
-- @designations.each do |designation|
-	%p= link_to designation.name, student_path(designation)
-
 = link_to 'Back', root_path
+|
+= link_to "Add Designation", new_designation_path
+%br
+- @designations.each do |designation|
+	%p= link_to designation.name, designation_path(designation)
+

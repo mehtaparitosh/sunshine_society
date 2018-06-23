@@ -7,7 +7,8 @@ class SponsorsController < ApplicationController
   end
 
   def show
-    # @volunteer_sponsors = Volunteersponsor.where("sponsor_id = ?", params[:id])
+    @sponsor_programs = SponsorProgram.where("sponsor_id = ?", params[:id])
+    @student_sponsors = StudentSponsor.where("sponsor_id = ?", params[:id])
   end
 
   def new

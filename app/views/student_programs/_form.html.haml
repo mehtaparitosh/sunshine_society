@@ -7,4 +7,9 @@
 
   .form-actions
   %br
-    = f.button :submit
+    -if @student
+      = f.button :submit, name: "student_id", value: @student.id, value: "Submit"
+    - elsif @program
+      = f.button :submit, name: "program_id", value: @program.id, value: "Submit"
+    - else
+      = f.button :submit

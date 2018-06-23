@@ -1,3 +1,11 @@
 %h1 New Coordinator for Student
-%h4= "#{@student.st_id}: #{@student.name}"
+-if params[:student_id] 
+	%h4= "#{@student.st_id}: #{@student.name}"
+- elsif params[:coordinator_id]
+	%h4= "#{@coordinator.co_id}: #{@coordinator.name}"
+- else
 = render 'form'
+- if params[:student_id] 
+	= link_to "Cancel", student_path(@student)
+- elsif params[:coordinator_id]
+	= link_to "Cancel", coordinator_path(@coordinator)

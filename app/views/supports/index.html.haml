@@ -1,7 +1,7 @@
 %h1 Hi Pupils, Learners, Bastards!
-
-- @supports.each do |support|
-	%p= link_to support.name, support_path(support)
 =link_to "Add After School Support", new_support_path
 |
 = link_to "Back", root_path
+%br
+- @supports.each do |support|
+	%p= link_to support.name, support_path(support)

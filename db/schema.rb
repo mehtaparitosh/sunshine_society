@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_22_133342) do
+ActiveRecord::Schema.define(version: 2018_06_22_164004) do
 
   create_table "coordinators", force: :cascade do |t|
     t.string "co_id"
@@ -38,14 +38,14 @@ ActiveRecord::Schema.define(version: 2018_06_22_133342) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "employee_desgnations", force: :cascade do |t|
+  create_table "employee_designations", force: :cascade do |t|
     t.boolean "active"
     t.integer "employee_id"
     t.integer "designation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["designation_id"], name: "index_employee_desgnations_on_designation_id"
-    t.index ["employee_id"], name: "index_employee_desgnations_on_employee_id"
+    t.index ["designation_id"], name: "index_employee_designations_on_designation_id"
+    t.index ["employee_id"], name: "index_employee_designations_on_employee_id"
   end
 
   create_table "employee_workplaces", force: :cascade do |t|

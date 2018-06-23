@@ -1,2 +1,11 @@
 %h1 Edit Schools Volunteer
+-if params[:volunteer_id] 
+	%h4= "#{@volunteer.vol_id}: #{@volunteer.name}"
+- elsif params[:school_id]
+	%h4= "#{@school.name}"
+- else
 = render 'form'
+- if params[:volunteer_id] 
+	= link_to "Cancel", volunteer_path(@volunteer)
+- elsif params[:school_id]
+	= link_to "Cancel", school_path(@school)

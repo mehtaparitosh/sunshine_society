@@ -7,7 +7,7 @@ class MembersController < ApplicationController
   end
 
   def show
-    # @volunteer_members = Volunteermember.where("member_id = ?", params[:id])
+    @member_designations = MemberDesignation.where("member_id = ?", params[:id])
   end
 
   def new
@@ -22,7 +22,7 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       if @member.save
-        @member.st_id = "SS-MEM-#{@member.id}"
+        @member.mem_id = "SS-MEM-#{@member.id}"
         @member.save
         format.html { redirect_to @member, notice: 'Member was successfully created.' }
         format.json { render :show, status: :created, location: @member }

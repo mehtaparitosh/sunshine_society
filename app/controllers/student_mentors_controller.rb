@@ -3,14 +3,24 @@ class StudentMentorsController < ApplicationController
   before_action :set_student_mentor, only: [:edit, :update, :destroy]
 
   def new
-    @student = Student.find(params[:student_id])
+    if params[:student_id] 
+      @student = Student.find(params[:student_id])
+    elsif params[:mentor_id] 
+      @mentor = Mentor.find(params[:mentor_id])
+    else
+    end  
     @students = Student.all
     @mentors = Mentor.all
     @student_mentor = StudentMentor.new
   end
 
   def edit
-    @student = Student.find(params[:student_id])
+    if params[:student_id] 
+      @student = Student.find(params[:student_id])
+    elsif params[:mentor_id] 
+      @mentor = Mentor.find(params[:mentor_id])
+    else
+    end 
     @students = Student.all
     @mentors = Mentor.all
   end
@@ -21,8 +31,15 @@ class StudentMentorsController < ApplicationController
     respond_to do |format|
       if @student_mentor.save
         format.html { 
-          @student = Student.find(@student_mentor.student_id)
-          redirect_to @student, notice: 'Student Mentor was successfully created.' 
+          if params[:student_id] 
+            @student = Student.find(@student_mentor.student_id)
+            redirect_to @student, notice: 'Student Mentor was successfully created.'
+          elsif params[:mentor_id] 
+            @mentor = Mentor.find(@student_mentor.mentor_id)
+            redirect_to @mentor, notice: 'Student Mentor was successfully created.'
+          else
+            redirect_to root_path, notice: 'Student Mentor was successfully created.'
+          end 
         }
         format.json { render :show, status: :created, location: @student_mentor }
       else
@@ -36,8 +53,15 @@ class StudentMentorsController < ApplicationController
     respond_to do |format|
       if @student_mentor.update(student_mentor_params)
         format.html { 
-          @student = Student.find(@student_mentor.student_id)
-          redirect_to @student, notice: 'Student Mentor was successfully updated.' 
+          if params[:student_id] 
+            @student = Student.find(@student_mentor.student_id)
+            redirect_to @student, notice: 'Student Mentor was successfully updated.'
+          elsif params[:mentor_id] 
+            @mentor = Mentor.find(@student_mentor.mentor_id)
+            redirect_to @mentor, notice: 'Student Mentor was successfully updated.'
+          else
+            redirect_to root_path, notice: 'Student Mentor was successfully updated.'
+          end 
         }
         format.json { render :show, status: :ok, location: @student_mentor }
       else

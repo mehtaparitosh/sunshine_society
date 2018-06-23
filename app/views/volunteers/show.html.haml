@@ -1,4 +1,26 @@
-%h1= @volunteer.name
+%h1= "#{@volunteer.vol_id}: #{@volunteer.name}"
 = link_to "Edit", edit_volunteer_path(@volunteer)
 |
 =link_to "Back", volunteers_path
+
+%hr
+%h4 Schools
+%small= link_to "Add School", new_volunteer_school_path(volunteer_id: @volunteer.id)
+- @volunteer_schools.each do |volunteer_school|
+	%p
+		= link_to volunteer_school.school.name, school_path(volunteer_school.school_id)
+		|
+		= volunteer_school.active
+		| 
+		= link_to "Edit", edit_volunteer_school_path(volunteer_school, volunteer_id: @volunteer.id)
+
+%hr
+%h4 Students
+%small= link_to "Add Students", new_student_volunteer_path(volunteer_id: @volunteer.id)
+- @student_volunteers.each do |student_volunteer|
+	%p
+		= link_to student_volunteer.student.name, student_path(student_volunteer.student_id)
+		|
+		= student_volunteer.active
+		| 
+		= link_to "Edit", edit_student_volunteer_path(student_volunteer, volunteer_id: @volunteer.id)

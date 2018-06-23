@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :programs
   resources :schools
   resources :sponsors
+  resources :sponsor_programs
   resources :students
   resources :student_coordinators
   resources :student_mentors

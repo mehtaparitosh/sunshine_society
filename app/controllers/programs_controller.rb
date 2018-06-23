@@ -7,8 +7,10 @@ class ProgramsController < ApplicationController
   end
 
   def show
-    # @volunteer_programs = Volunteerprogram.where("program_id = ?", params[:id])
+   @student_programs = StudentProgram.where("program_id = ?", params[:id])
+   @sponsor_programs = SponsorProgram.where("program_id = ?", params[:id])
   end
+
 
   def new
     @program = Program.new

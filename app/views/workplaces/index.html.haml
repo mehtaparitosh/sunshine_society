@@ -1,4 +1,7 @@
 %h1 Hi Pupils, Learners, Bastards!
 
+= link_to "Back", root_path
+|
+= link_to "New Workplace", new_workplace_path
 - @workplaces.each do |workplace|
 	%p= link_to workplace.name, workplace_path(workplace)

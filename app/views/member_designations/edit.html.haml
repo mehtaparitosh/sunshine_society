@@ -1,3 +1,11 @@
 %h1 Edit Designation of Member
-
+-if params[:member_id] 
+	%h4= "#{@member.mem_id}: #{@member.name}"
+- elsif params[:designation_id]
+	%h4= "#{@designation.name}"
+- else
 = render 'form'
+- if params[:member_id] 
+	= link_to "Cancel", member_path(@member)
+- elsif params[:designation_id]
+	= link_to "Cancel", designation_path(@designation)

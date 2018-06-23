@@ -2,3 +2,14 @@
 = link_to "Back", supports_path
 |
 = link_to "Edit", edit_support_path(@support)
+
+%hr
+%h4 Students
+%small= link_to "Add Students", new_student_support_path(support_id: @support.id)
+- @student_supports.each do |student_support|
+	%p
+		= link_to student_support.student.name, student_path(student_support.student_id)
+		|
+		= student_support.active
+		| 
+		= link_to "Edit", edit_student_support_path(student_support, support_id: @support.id)

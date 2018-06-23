@@ -1,3 +1,11 @@
 %h1 Edit Student Program
-%h4= "#{@student.st_id}: #{@student.name}"
+-if params[:student_id] 
+	%h4= "#{@student.st_id}: #{@student.name}"
+- elsif params[:program_id]
+	%h4= "#{@program.name}"
+- else
 = render 'form'
+- if params[:student_id] 
+	= link_to "Cancel", student_path(@student)
+- elsif params[:program_id]
+	= link_to "Cancel", program_path(@program)

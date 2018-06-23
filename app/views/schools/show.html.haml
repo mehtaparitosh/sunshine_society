@@ -3,3 +3,26 @@
 = link_to "Back", schools_path
 |
 = link_to "Edit", edit_school_path(@school)
+
+%hr
+%h4 Volunteers
+%small= link_to "Add Volunteer", new_volunteer_school_path(school_id: @school.id)
+- @volunteer_schools.each do |volunteer_school|
+	%p
+		= link_to volunteer_school.volunteer.name, volunteer_path(volunteer_school.volunteer_id)
+		|
+		= volunteer_school.active
+		| 
+		= link_to "Edit", edit_volunteer_school_path(volunteer_school, school_id: @school.id)
+		
+%hr
+%h4 Students
+%small= link_to "Add Students", new_student_school_path(school_id: @school.id)
+- @student_schools.each do |student_school|
+	%p
+		= link_to student_school.student.name, student_path(student_school.student_id)
+		|
+		= student_school.active
+		| 
+		= link_to "Edit", edit_student_school_path(student_school, school_id: @school.id)
+

@@ -6,4 +6,9 @@
     = f.input :school_id ,:collection => @schools,:label_method => :name,:value_method => :id, prompt: "Select School", :label => "School" ,:include_blank => false
   .form-actions
   %br
-    = f.button :submit
+    -if @volunteer
+      = f.button :submit, name: "volunteer_id", value: @volunteer.id, value: "Submit"
+    - elsif @school
+      = f.button :submit, name: "school_id", value: @school.id, value: "Submit"
+    - else
+      = f.button :submit

@@ -2,8 +2,13 @@
   = f.error_notification
   .form-inputs
     = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
-    = f.input :employee_id ,:collection => @employees,:label_method => em_id,:value_method => :id, prompt: "Select Employee ID", :label => "Employee ID" ,:include_blank => false
+    = f.input :employee_id ,:collection => @employees,:label_method => :em_id,:value_method => :id, prompt: "Select Employee ID", :label => "Employee ID" ,:include_blank => false
     = f.input :designation_id ,:collection => @designations,:label_method => :name,:value_method => :id, prompt: "Select Designation", :label => "Designation" ,:include_blank => false
   .form-actions
   %br
-    = f.button :submit
+    -if @employee
+      = f.button :submit, name: "employee_id", value: @employee.id, value: "Submit"
+    - elsif @designation
+      = f.button :submit, name: "designation_id", value: @designation.id, value: "Submit"
+    - else
+      = f.button :submit

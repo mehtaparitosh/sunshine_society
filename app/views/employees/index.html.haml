@@ -1,6 +1,9 @@
 %h1 Hi Pupils, Learners, Bastards!
 
+= link_to 'Back', root_path
+|
+= link_to 'Add Employee', new_employee_path
+%br
 - @employees.each do |employee|
 	%p= link_to employee.name, employee_path(employee)
 
-= link_to 'Back', root_path

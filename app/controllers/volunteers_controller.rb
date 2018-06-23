@@ -7,7 +7,8 @@ class VolunteersController < ApplicationController
   end
 
   def show
-    # @volunteer_volunteers = Volunteervolunteer.where("volunteer_id = ?", params[:id])
+    @volunteer_schools = VolunteerSchool.where("volunteer_id = ?", params[:id])
+    @student_volunteers = StudentVolunteer.where("volunteer_id = ?", params[:id])
   end
 
   def new

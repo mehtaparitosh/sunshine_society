@@ -3,14 +3,24 @@ class StudentSupportsController < ApplicationController
   before_action :set_student_support, only: [:edit, :update, :destroy]
 
   def new
-    @student = Student.find(params[:student_id])
+    if params[:student_id] 
+      @student = Student.find(params[:student_id])
+    elsif params[:support_id] 
+      @support = Support.find(params[:support_id])
+    else
+    end  
     @students = Student.all
     @supports = Support.all
     @student_support = StudentSupport.new
   end
 
   def edit
-    @student = Student.find(params[:student_id])
+    if params[:student_id] 
+      @student = Student.find(params[:student_id])
+    elsif params[:support_id] 
+      @support = Support.find(params[:support_id])
+    else
+    end
     @students = Student.all
     @supports = Support.all
   end
@@ -21,8 +31,15 @@ class StudentSupportsController < ApplicationController
     respond_to do |format|
       if @student_support.save
         format.html { 
-          @student = Student.find(@student_support.student_id)
-          redirect_to @student, notice: 'Student Support was successfully created.' 
+          if params[:student_id] 
+            @student = Student.find(@student_support.student_id)
+            redirect_to @student, notice: 'Student support was successfully created.'
+          elsif params[:support_id] 
+            @support = Support.find(@student_support.support_id)
+            redirect_to @support, notice: 'Student support was successfully created.'
+          else
+            redirect_to root_path, notice: 'Student support was successfully created.'
+          end  
         }
         format.json { render :show, status: :created, location: @student_support }
       else
@@ -36,8 +53,15 @@ class StudentSupportsController < ApplicationController
     respond_to do |format|
       if @student_support.update(student_support_params)
         format.html { 
-          @student = Student.find(@student_support.student_id)
-          redirect_to @student, notice: 'Student Support was successfully updated.' 
+          if params[:student_id] 
+            @student = Student.find(@student_support.student_id)
+            redirect_to @student, notice: 'Student support was successfully updated.'
+          elsif params[:support_id] 
+            @support = Support.find(@student_support.support_id)
+            redirect_to @support, notice: 'Student support was successfully updated.'
+          else
+            redirect_to root_path, notice: 'Student support was successfully updated.'
+          end  
         }
         format.json { render :show, status: :ok, location: @student_support }
       else

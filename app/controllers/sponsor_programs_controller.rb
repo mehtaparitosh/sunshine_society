@@ -3,12 +3,24 @@ class SponsorProgramsController < ApplicationController
   before_action :set_sponsor_program, only: [:edit, :update, :destroy]
 
   def new
+    if params[:sponsor_id] 
+      @sponsor = Sponsor.find(params[:sponsor_id])
+    elsif params[:program_id] 
+      @program = Program.find(params[:program_id])
+    else
+    end
     @sponsors = Sponsor.all
     @programs = Program.all
     @sponsor_program = SponsorProgram.new
   end
 
   def edit
+    if params[:sponsor_id] 
+      @sponsor = Sponsor.find(params[:sponsor_id])
+    elsif params[:program_id] 
+      @program = Program.find(params[:program_id])
+    else
+    end
     @sponsors = Sponsor.all
     @programs = Program.all
   end
@@ -18,7 +30,17 @@ class SponsorProgramsController < ApplicationController
 
     respond_to do |format|
       if @sponsor_program.save
-        format.html { redirect_to @sponsor_program, notice: 'Sponsor Program was successfully created.' }
+        format.html { 
+          if params[:sponsor_id] 
+            @sponsor = Sponsor.find(@sponsor_program.sponsor_id)
+            redirect_to @sponsor, notice: 'sponsor program was successfully created.'
+          elsif params[:program_id] 
+            @program = Program.find(@sponsor_program.program_id)
+            redirect_to @program, notice: 'sponsor program was successfully created.'
+          else
+            redirect_to root_path, notice: 'sponsor program was successfully created.'
+          end 
+        }
         format.json { render :show, status: :created, location: @sponsor_program }
       else
         format.html { render :new }
@@ -30,7 +52,17 @@ class SponsorProgramsController < ApplicationController
   def update
     respond_to do |format|
       if @sponsor_program.update(sponsor_program_params)
-        format.html { redirect_to @sponsor_program, notice: 'Sponsor Program was successfully updated.' }
+        format.html { 
+          if params[:sponsor_id] 
+            @sponsor = Sponsor.find(@sponsor_program.sponsor_id)
+            redirect_to @sponsor, notice: 'sponsor program was successfully updated.'
+          elsif params[:program_id] 
+            @program = Program.find(@sponsor_program.program_id)
+            redirect_to @program, notice: 'sponsor program was successfully updated.'
+          else
+            redirect_to root_path, notice: 'sponsor program was successfully updated.'
+          end 
+        }
         format.json { render :show, status: :ok, location: @sponsor_program }
       else
         format.html { render :edit }

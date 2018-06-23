@@ -1,1 +1,15 @@
 %h1= @workplace.name
+= link_to "Back", workplaces_path
+|
+= link_to "Edit", edit_workplace_path(@workplace)
+
+%hr
+%h4 Employees
+%small= link_to "Add Employees", new_employee_workplace_path(workplace_id: @workplace.id)
+- @employee_workplaces.each do |employee_workplace|
+	%p
+		= link_to employee_workplace.employee.name, employee_path(employee_workplace.employee_id)
+		|
+		= employee_workplace.active
+		| 
+		= link_to "Edit", edit_employee_workplace_path(employee_workplace, workplace_id: @workplace.id)

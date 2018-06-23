@@ -1,2 +1,27 @@
-%h1= @employee.name
+%h1= "#{@employee.em_id}: #{@employee.name}"
 = link_to 'Back', employees_path
+| 
+= link_to "Edit", edit_employee_path
+
+%hr
+%h4 Designation
+%small= link_to "Add Designation", new_employee_designation_path(employee_id: @employee.id)
+- @employee_designations.each do |employee_designation|
+	%p
+		= link_to employee_designation.designation.name, designation_path(employee_designation.designation.id)
+		|
+		= employee_designation.active
+		| 
+		= link_to "Edit", edit_employee_designation_path(employee_designation, employee_id: @employee.id)
+
+%hr
+%h4 Workplace
+%small= link_to "Add Workplace", new_employee_workplace_path(employee_id: @employee.id)
+- @employee_workplaces.each do |employee_workplace|
+	%p
+		= link_to employee_workplace.workplace.name, workplace_path(employee_workplace.workplace.id)
+		|
+		= employee_workplace.active
+		| 
+		= link_to "Edit", edit_employee_workplace_path(employee_workplace, employee_id: @employee.id)
+

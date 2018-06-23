@@ -3,8 +3,13 @@
   .form-inputs
     = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
     = f.input :sponsor_id ,:collection => @sponsors,:label_method => :sp_id,:value_method => :id, prompt: "Select Sponsor ID", :label => "Sponsor ID" ,:include_blank => false
-    = f.input :program_id ,:collection => @programs,:label_method => :name,:value_method => :id, prompt: "Select Sponsor's Program", :label => "Student Sponsor's Program" ,:include_blank => false
+    = f.input :program_id ,:collection => @programs,:label_method => :name,:value_method => :id, prompt: "Select Sponsor's Program", :label => "Sponsor's Program" ,:include_blank => false
 
   .form-actions
   %br
-    = f.button :submit
+    -if @sponsor
+      = f.button :submit, name: "sponsor_id", value: @sponsor.id, value: "Submit"
+    - elsif @program
+      = f.button :submit, name: "program_id", value: @program.id, value: "Submit"
+    - else
+      = f.button :submit

@@ -1,3 +1,27 @@
 %h1= @program.name
 
 = link_to "Back", programs_path
+|
+= link_to "Edit", edit_program_path(@program)
+
+%hr
+%h4 Sponsors
+%small= link_to "Add Sponsors", new_sponsor_program_path(program_id: @program.id)
+- @sponsor_programs.each do |sponsor_program|
+	%p
+		= link_to sponsor_program.sponsor.name, sponsor_path(sponsor_program.sponsor_id)
+		|
+		= sponsor_program.active
+		| 
+		= link_to "Edit", edit_sponsor_program_path(sponsor_program, program_id: @program.id)
+
+%hr
+%h4 Students
+%small= link_to "Add Students", new_student_program_path(program_id: @program.id)
+- @student_programs.each do |student_program|
+	%p
+		= link_to student_program.student.name, student_path(student_program.student_id)
+		|
+		= student_program.active
+		| 
+		= link_to "Edit", edit_student_program_path(student_program, program_id: @program.id)

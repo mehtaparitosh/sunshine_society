@@ -7,6 +7,7 @@ class MentorsController < ApplicationController
   end
 
   def show
+    @student_mentors = StudentMentor.where("mentor_id = ?", params[:id])
     # @volunteer_mentors = Volunteermentor.where("mentor_id = ?", params[:id])
   end
 

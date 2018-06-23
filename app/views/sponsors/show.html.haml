@@ -1,5 +1,27 @@
-%h1= @sponsor.name
+%h1= "#{@sponsor.sp_id}: #{@sponsor.name}"
 
 = link_to "Back", sponsors_path
 |
 = link_to "Edit", edit_sponsor_path(@sponsor)
+
+%hr
+%h4 Program
+%small= link_to "Add Program", new_sponsor_program_path(sponsor_id: @sponsor.id)
+- @sponsor_programs.each do |sponsor_program|
+	%p
+		= link_to sponsor_program.program.name, program_path(sponsor_program.program_id)
+		|
+		= sponsor_program.active
+		| 
+		= link_to "Edit", edit_sponsor_program_path(sponsor_program, sponsor_id: @sponsor.id)
+
+%hr
+%h4 Students
+%small= link_to "Add Students", new_student_sponsor_path(sponsor_id: @sponsor.id)
+- @student_sponsors.each do |student_sponsor|
+	%p
+		= link_to student_sponsor.student.name, student_path(student_sponsor.student_id)
+		|
+		= student_sponsor.active
+		| 
+		= link_to "Edit", edit_student_sponsor_path(student_sponsor, sponsor_id: @sponsor.id)

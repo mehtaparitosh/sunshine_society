@@ -3,12 +3,24 @@ class VolunteerSchoolsController < ApplicationController
   before_action :set_volunteer_school, only: [:edit, :update, :destroy]
 
   def new
+    if params[:volunteer_id] 
+      @volunteer = Volunteer.find(params[:volunteer_id])
+    elsif params[:school_id] 
+      @school = School.find(params[:school_id])
+    else
+    end
     @volunteers = Volunteer.all
     @schools = School.all
     @volunteer_school = VolunteerSchool.new
   end
 
   def edit
+    if params[:volunteer_id] 
+      @volunteer = Volunteer.find(params[:volunteer_id])
+    elsif params[:school_id] 
+      @school = School.find(params[:school_id])
+    else
+    end
     @volunteers = Volunteer.all
     @schools = School.all
   end
@@ -18,7 +30,17 @@ class VolunteerSchoolsController < ApplicationController
 
     respond_to do |format|
       if @volunteer_school.save
-        format.html { redirect_to @volunteer_school, notice: 'Volunteer School was successfully created.' }
+        format.html { 
+          if params[:volunteer_id] 
+            @volunteer = Volunteer.find(@volunteer_school.volunteer_id)
+            redirect_to @volunteer, notice: 'volunteer school was successfully created.'
+          elsif params[:school_id] 
+            @school = School.find(@volunteer_school.school_id)
+            redirect_to @school, notice: 'volunteer school was successfully created.'
+          else
+            redirect_to root_path, notice: 'volunteer school was successfully created.'
+          end 
+        }
         format.json { render :show, status: :created, location: @volunteer_school }
       else
         format.html { render :new }
@@ -30,7 +52,17 @@ class VolunteerSchoolsController < ApplicationController
   def update
     respond_to do |format|
       if @volunteer_school.update(volunteer_school_params)
-        format.html { redirect_to @volunteer_school, notice: 'Volunteer School was successfully updated.' }
+        format.html { 
+          if params[:volunteer_id] 
+            @volunteer = Volunteer.find(@volunteer_school.volunteer_id)
+            redirect_to @volunteer, notice: 'volunteer school was successfully updated.'
+          elsif params[:school_id] 
+            @school = School.find(@volunteer_school.school_id)
+            redirect_to @school, notice: 'volunteer school was successfully updated.'
+          else
+            redirect_to root_path, notice: 'volunteer school was successfully updated.'
+          end 
+        }
         format.json { render :show, status: :ok, location: @volunteer_school }
       else
         format.html { render :edit }
