@@ -1,10 +1,62 @@
-%h1= "#{@student.st_id}: #{@student.name}"
+%small
+	= link_to "Home", root_path, class: "btn btn-nav"
+	= "/"
+	= link_to "Students", students_path, class: "btn btn-nav"
+	= "/"
+	= "#{@student.name}"
+.heading
+	%h1= "#{@student.name}: #{@student.st_id}"
+	%p.edit
+		= link_to edit_student_path(@student) do
+			%i.fa.fa-pencil-square-o
+	%p.print
+		%i.fa.fa-print
 
-= link_to "Back", students_path, class: "btn btn-nav"
-|
-= link_to "Edit", edit_student_path(@student), class: "btn btn-nav"
+.info-block
+	.section-1
+		%h3 General Information
+		.general-info
+			.col-1
+				%p= "Name: #{@student.name}"
+				%p= "Gender: #{@student.gender.capitalize}"
+				%p= "Date of Birth: #{@student.dob.strftime("%B %d, %Y")}"
+				%p= "Date of Joining: #{@student.doj.strftime("%B %d, %Y")}"
+				%p= "Category: #{@student.category.capitalize}"
+				%p= "Current Program: #{@student.category.capitalize}"
+				%p= "Primary Contact: #{@student.contact_1}"
 
-%hr	
+			.col-2
+				- if @student.active
+					%p.active-block
+						Status:
+						%span.active
+						Active
+				- else
+					%p.inactive-block
+						Status:
+						%span.inactive
+						Inactive
+					%p= "Date of Leaving: #{@student.dol}"
+
+
+				- if @student.contact_2!=nil &&  @student.contact_2!="" && @student.contact_3!=nil && @student.contact_3!=""
+					%p= "Sec. Contact(s): #{@student.contact_2}, #{@student.contact_3}"
+				- else
+					%p= "Sec. Contact(s): #{@student.contact_2}"
+				%p= "E-Mail: #{@student.email}"
+				%p= "Address: #{@student.address}"
+	.section-2
+		%h3 Additional Information
+		.additional-info
+			.col-1
+				%p= "Father's Name: #{@student.fathers_name}"
+				%p= "Father's Occupation: #{@student.fathers_occupation}"
+				%p= "Mother's Name: #{@student.mothers_name}"
+				%p= "Mother's Occupation: #{@student.mothers_occupation}"
+				%p= "Current Class/Col.Year&Sem: #{@student.grade}"
+				%p= "Current School: #{}"
+
+
 
 %h4 Coordinators
 %small= link_to "Add Coordinator", new_student_coordinator_path(student_id: @student.id)
@@ -13,7 +65,7 @@
 		= link_to student_coordinator.coordinator.name, coordinator_path(student_coordinator.coordinator_id)
 		|
 		= student_coordinator.active
-		| 
+		|
 		= link_to "Edit", edit_student_coordinator_path(student_coordinator, student_id: @student.id)
 %hr
 %h4 Mentors
@@ -23,7 +75,7 @@
 		= link_to student_mentor.mentor.name, mentor_path(student_mentor.mentor_id)
 		|
 		= student_mentor.active
-		| 
+		|
 		= link_to "Edit", edit_student_mentor_path(student_mentor, student_id: @student.id)
 %hr
 %h4 Programs
@@ -33,7 +85,7 @@
 		= link_to student_program.program.name, program_path(student_program.program_id)
 		|
 		= student_program.active
-		| 
+		|
 		= link_to "Edit", edit_student_program_path(student_program, student_id: @student.id)
 %hr
 %h4 Schools
@@ -43,7 +95,7 @@
 		= link_to student_school.school.name, school_path(student_school.school_id)
 		|
 		= student_school.active
-		| 
+		|
 		= link_to "Edit", edit_student_school_path(student_school, student_id: @student.id)
 %hr
 %h4 Sponsors
@@ -53,7 +105,7 @@
 		= link_to student_sponsor.sponsor.name, sponsor_path(student_sponsor.sponsor_id)
 		|
 		= student_sponsor.active
-		| 
+		|
 		= link_to "Edit", edit_student_sponsor_path(student_sponsor, student_id: @student.id)
 %hr
 %h4 After School Support
@@ -63,7 +115,7 @@
 		= link_to student_support.support.name, support_path(student_support.support_id)
 		|
 		= student_support.active
-		| 
+		|
 		= link_to "Edit", edit_student_support_path(student_support, student_id: @student.id)
 %hr
 %h4 Volunteers
@@ -73,5 +125,5 @@
 		= link_to student_volunteer.volunteer.name, volunteer_path(student_volunteer.volunteer_id)
 		|
 		= student_volunteer.active
-		| 
+		|
 		= link_to "Edit", edit_student_volunteer_path(student_volunteer, student_id: @student.id)

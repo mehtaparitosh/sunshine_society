@@ -2,6 +2,8 @@
   = f.error_notification
   .form-inputs
     = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
+    = f.input :start, as: :date, html5: true
+    = f.input :end, as: :date, html5: true
     = f.input :student_id ,:collection => @students,:label_method => :collection_values,:value_method => :id, prompt: "Select Student ID", :label => "Student ID" ,:include_blank => false
     = f.input :support_id ,:collection => @supports,:label_method => :name,:value_method => :id, prompt: "Select Support", :label => "After School Support" ,:include_blank => false
 
