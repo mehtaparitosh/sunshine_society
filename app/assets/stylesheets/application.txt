@@ -18,6 +18,8 @@
  /* IMPORTS */
  /*-------------------------------------*/
  @import "font-awesome";
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
 
 /*-------------------------------------*/
 /* BASIC SETUP */

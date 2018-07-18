@@ -1,0 +1,215 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+ /*-------------------------------------*/
+ /* IMPORTS */
+ /*-------------------------------------*/
+ @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+ // @import "font-awesome";
+ // @import "bootstrap-sprockets";
+ // @import "bootstrap";
+
+/*-------------------------------------*/
+/* BASIC SETUP */
+/*-------------------------------------*/
+  //Remove Browser Styling
+  input {
+     outline: none;
+     border: none;
+     // background-color:transparent;
+  }
+
+
+  // .container {
+  //   padding: 80px 10px 0px 10px;
+  //   max-width: 1170px;
+  //   margin: auto;
+  //   color: #333;
+  // }
+
+  .notice {
+    color : green;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+/*-------------------------------------*/
+/* NAVBAR */
+/*-------------------------------------*/
+.navbar-nav {
+  margin-left: 20px;
+  text-align: center;
+}
+
+
+/*-------------------------------------*/
+/* LOGIN PAGE */
+/*-------------------------------------*/
+ .signin {
+  display: -ms-flexbox;
+ 	display: -webkit-flex;
+ 	display: flex;
+   .form {
+     padding: 25px;
+     margin: auto;
+     .form-inputs {
+       input {
+         border-radius: 5px;
+         height: 35px;
+       }
+     }
+     .form-actions {
+       display: -ms-flexbox;
+       display: -webkit-flex;
+       display: flex;
+       input {
+         margin: 5px auto;
+         width: 50%;
+         border: 0.3px solid grey;
+         font-size: 20px;
+       }
+     }
+   }
+   i {
+     font-size: 32px;
+     padding-right: 10px;
+   }
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*-------------------------------------*/
+ /* NAVBAR */
+ /*-------------------------------------*/
+
+ // nav {
+ //   background-color: #333;
+ //   color: #e7e7e7;
+ // }
+ // .w3-bar {
+ //   display: flex;
+ //   .nav-logo-img {
+ //     max-width: 70px;
+ //     margin: 5px 5px 5px 20px;
+ //   }
+ //   .ss {
+ //     padding-top: 10px;
+ //   }
+ //   .fa-bars {
+ //     font-size: 35px;
+ //   }
+ //   .bars {
+ //     align-self: flex-end;
+ //     margin: 0 0 10px auto !important;
+ //   }
+ //   .nav-search {
+ //     align-self: flex-end;
+ //     margin: 0 10px 23px auto !important;
+ //     input {
+ //       border-radius: 5px;
+ //       padding: 5px;
+ //     }
+ //   }
+ //   .dropdown {
+ //     margin: 14px 30px 10px 10px;
+ //   }
+ // }
+//
+//  /*-------------------------------------*/
+// /* SHOW PAGE */
+// /*-------------------------------------*/
+//
+// .heading {
+//   display: flex;
+//   .edit, .print {
+//     // padding-top: 5px;
+//     padding-left: 5px;
+//     font-size: 21px;
+//   }
+// }
+//
+// .info-block {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: flex-start;
+//   flex-wrap: wrap;
+//   .general-info {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: flex-start;
+//     flex-wrap: wrap;
+//     .col-2 {
+//       padding-left: 10px;
+//       max-width: 350px;
+//       .active-block{
+//         %span, .active {
+//           background-color: green;
+//           padding-right: 15px;
+//           margin-right: 10px;
+//         }
+//       }
+//       .inactive-block{
+//         %span, .inactive {
+//           background-color: red;
+//           padding-right: 15px;
+//           margin-right: 10px;
+//         }
+//       }
+//     }
+//     .col-1 {
+//       padding-left: 10px;
+//       max-width: 350px;
+//     }
+//   }
+//   .additional-info {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: flex-start;
+//     flex-wrap: wrap;
+//     .col-1 {
+//       padding-left: 10px;
+//       max-width: 350px;
+//     }
+//   }
+// }
+//
+//
+// /*-------------------------------------*/
+// /* Forns */
+// /*-------------------------------------*/
+//
+// .forminput {
+//   input {
+//     border: 1px solid grey;
+//   }
+//
+// }

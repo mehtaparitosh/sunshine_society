@@ -4,35 +4,38 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title SunshineSociety
     = csrf_meta_tags
+    %link{:crossorigin => "anonymous", :href => "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css", :integrity => "sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm", :rel => "stylesheet"}/
+    %script{:crossorigin => "anonymous", :integrity => "sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN", :src => "https://code.jquery.com/jquery-3.2.1.slim.min.js"}
+    %script{:crossorigin => "anonymous", :integrity => "sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q", :src => "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"}
+    %script{:crossorigin => "anonymous", :integrity => "sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl", :src => "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"}
+
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    %link{:href => "https://www.w3schools.com/w3css/4/w3.css", :rel => "stylesheet"}/
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
     %link{:href => "/assets/ss-logo.ico", :rel => "shortcut icon"}/
 
   %body
-    -# Navbar
-    %nav.w3-top
-      .w3-bar.color.w3-card-4
-        = link_to image_tag('ss-logo.jpg', class: "nav-logo-img w3-image w3-padding-small")
-        %p.ss Sunshine Society
-        - if user_signed_in?
-          .nav-search.w3-hide-small
-            -# = form_tag dashboard_path, :method => 'get' do
-              -# %p.nav-search-form
-            = text_field_tag :search, params[:search], placeholder: "Search ID"
-          .dropdown.w3-dropdown-hover.w3-hide-small
-            %button.w3-padding-large.w3-button{:title => "More"}
-              MORE
-              %i.fa.fa-caret-down
-            .w3-dropdown-content.w3-bar-block.w3-card-4
-              = link_to 'Logout', destroy_user_session_path, method: :delete, class: "w3-bar-item w3-button"
-              = link_to "Home", root_path, class: "w3-bar-item w3-button"
-          %a.bars.w3-padding-large.w3-hide-medium.w3-hide-large{:href=>"#",:onlclick=>"myFunction()", :title=>"Toggle Navigation Menu"}
-            %i.fa.fa-bars
-    .w3-bar-block.w3-black.w3-hide.w3-hide-large.w3-hide-medium.w3-top.navDemo{:style => "margin-top:76px"}
-      = link_to 'Logout', destroy_user_session_path, method: :delete, class: "w3-bar-item w3-button"
-      = link_to "Home", root_path, class: "w3-bar-item w3-button"
+    %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+      -# %a.navbar-brand{:href => "#"} Navbar
+      = link_to image_tag('ss-logo.jpg',:width=>"70", class: "navbar-brand d-inline-block align-top")
+      %a.navbar-brand{:href => "#"} Sunshine Society
+
+
+      - if user_signed_in?
+        %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNav", "data-toggle" => "collapse", :type => "button"}
+          %span.navbar-toggler-icon
+        #navbarNav.collapse.navbar-collapse
+          %ul.navbar-nav
+            %li.nav-item.active
+              = link_to "Home", root_path, class: "nav-link"
+            %li.nav-item
+              = link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-link"
+      -# %form.form-inline.my-2.my-lg-0
+      -#   %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+      -#   %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
+
+
+
 
     .container
       %p.notice.w3-panel.w3-center= notice

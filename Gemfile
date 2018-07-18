@@ -32,6 +32,10 @@ gem 'haml'
 gem 'erb2haml'
 gem 'simple_form'
 gem 'font-awesome-rails'
+
+gem 'bootstrap-sass', '~> 3.3.7'
+gem 'jquery-rails'
+# gem 'sass-rails', '>= 3.2'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
