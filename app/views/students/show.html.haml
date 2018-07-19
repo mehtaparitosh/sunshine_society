@@ -19,8 +19,10 @@
 			.col-1
 				%p= "Name: #{@student.name}"
 				%p= "Gender: #{@student.gender.capitalize}"
-				-# %p= "Date of Birth: #{@student.dob.strftime("%B %d, %Y")}"
-				%p= "Date of Joining: #{@student.doj.strftime("%B %d, %Y")}"
+				-if @student.dob
+					%p= "Date of Birth: #{@student.dob.strftime("%B %d, %Y")}"
+				-if @student.doj
+					%p= "Date of Joining: #{@student.doj.strftime("%B %d, %Y")}"
 				%p= "Category: #{@student.category.capitalize}"
 				%p= "Current Program: #{@student.category.capitalize}"
 				%p= "Primary Contact: #{@student.contact_1}"
