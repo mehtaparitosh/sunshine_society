@@ -16,8 +16,9 @@
  /* IMPORTS */
  /*-------------------------------------*/
  @import url('https://fonts.googleapis.com/css?family=Montserrat');
+ @import 'bootstrap.min.css';
 
- // @import "font-awesome";
+ @import "font-awesome";
  // @import "bootstrap-sprockets";
  // @import "bootstrap";
 
@@ -26,11 +27,15 @@
 /*-------------------------------------*/
   //Remove Browser Styling
   input {
-     outline: none;
-     border: none;
+     // outline: none;
+     // border: none;
      // background-color:transparent;
   }
+  *:focus {
+    outline-color: #efc244;
+  }
 
+  $brand-primary: #efc244;
 
   // .container {
   //   padding: 80px 10px 0px 10px;
@@ -148,14 +153,20 @@
 // /* SHOW PAGE */
 // /*-------------------------------------*/
 //
-// .heading {
-//   display: flex;
-//   .edit, .print {
-//     // padding-top: 5px;
-//     padding-left: 5px;
-//     font-size: 21px;
-//   }
-// }
+.heading {
+  display: flex;
+  .edit, .print {
+    // padding-top: 5px;
+    padding-left: 5px;
+    font-size: 21px;
+  }
+}
+
+.active-block, .inactive-block {
+  span {
+    padding: 4px 5px 4px 5px;
+  }
+}
 //
 // .info-block {
 //   display: flex;

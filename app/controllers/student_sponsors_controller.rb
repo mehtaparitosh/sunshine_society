@@ -3,9 +3,9 @@ class StudentSponsorsController < ApplicationController
   before_action :set_student_sponsor, only: [:edit, :update, :destroy]
 
   def new
-    if params[:student_id] 
+    if params[:student_id]
       @student = Student.find(params[:student_id])
-    elsif params[:sponsor_id] 
+    elsif params[:sponsor_id]
       @sponsor = Sponsor.find(params[:sponsor_id])
     else
     end
@@ -15,9 +15,9 @@ class StudentSponsorsController < ApplicationController
   end
 
   def edit
-    if params[:student_id] 
+    if params[:student_id]
       @student = Student.find(params[:student_id])
-    elsif params[:sponsor_id] 
+    elsif params[:sponsor_id]
       @sponsor = Sponsor.find(params[:sponsor_id])
     else
     end
@@ -30,16 +30,16 @@ class StudentSponsorsController < ApplicationController
 
     respond_to do |format|
       if @student_sponsor.save
-        format.html { 
-          if params[:student_id] 
+        format.html {
+          if params[:student_id]
             @student = Student.find(@student_sponsor.student_id)
             redirect_to @student, notice: 'Student sponsor was successfully created.'
-          elsif params[:sponsor_id] 
+          elsif params[:sponsor_id]
             @sponsor = Sponsor.find(@student_sponsor.sponsor_id)
             redirect_to @sponsor, notice: 'Student sponsor was successfully created.'
           else
             redirect_to root_path, notice: 'Student sponsor was successfully created.'
-          end   
+          end
         }
         format.json { render :show, status: :created, location: @student_sponsor }
       else
@@ -52,16 +52,16 @@ class StudentSponsorsController < ApplicationController
   def update
     respond_to do |format|
       if @student_sponsor.update(student_sponsor_params)
-        format.html { 
-          if params[:student_id] 
+        format.html {
+          if params[:student_id]
             @student = Student.find(@student_sponsor.student_id)
             redirect_to @student, notice: 'Student sponsor was successfully updated.'
-          elsif params[:sponsor_id] 
+          elsif params[:sponsor_id]
             @sponsor = Sponsor.find(@student_sponsor.sponsor_id)
             redirect_to @sponsor, notice: 'Student sponsor was successfully updated.'
           else
             redirect_to root_path, notice: 'Student sponsor was successfully updated.'
-          end 
+          end
         }
         format.json { render :show, status: :ok, location: @student_sponsor }
       else
@@ -70,7 +70,7 @@ class StudentSponsorsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @student_sponsor.destroy
     respond_to do |format|
@@ -87,6 +87,6 @@ class StudentSponsorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_sponsor_params
-      params.require(:student_sponsor).permit(:active, :student_id, :sponsor_id, :academic_year, :sponsor_type)
+      params.require(:student_sponsor).permit(:active, :student_id, :sponsor_id, :academic_year, :sponsor_type, :start, :end)
     end
 end

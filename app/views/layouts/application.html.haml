@@ -17,8 +17,8 @@
   %body
     %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       -# %a.navbar-brand{:href => "#"} Navbar
-      = link_to image_tag('ss-logo.jpg',:width=>"70", class: "navbar-brand d-inline-block align-top")
-      %a.navbar-brand{:href => "#"} Sunshine Society
+      = link_to image_tag('ss-logo.jpg',:width=>"70", class: "navbar-brand d-inline-block align-top"), root_path
+      = link_to "Sunshine Society", root_path, class: "navbar-brand"
 
 
       - if user_signed_in?

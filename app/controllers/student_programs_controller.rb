@@ -3,9 +3,9 @@ class StudentProgramsController < ApplicationController
   before_action :set_student_program, only: [:edit, :update, :destroy]
 
   def new
-    if params[:student_id] 
+    if params[:student_id]
       @student = Student.find(params[:student_id])
-    elsif params[:program_id] 
+    elsif params[:program_id]
       @program = Program.find(params[:program_id])
     else
     end
@@ -15,9 +15,9 @@ class StudentProgramsController < ApplicationController
   end
 
   def edit
-    if params[:student_id] 
+    if params[:student_id]
       @student = Student.find(params[:student_id])
-    elsif params[:program_id] 
+    elsif params[:program_id]
       @program = Program.find(params[:program_id])
     else
     end
@@ -30,16 +30,16 @@ class StudentProgramsController < ApplicationController
 
     respond_to do |format|
       if @student_program.save
-        format.html { 
-          if params[:student_id] 
+        format.html {
+          if params[:student_id]
             @student = Student.find(@student_program.student_id)
             redirect_to @student, notice: 'Student program was successfully created.'
-          elsif params[:program_id] 
+          elsif params[:program_id]
             @program = Program.find(@student_program.program_id)
             redirect_to @program, notice: 'Student program was successfully created.'
           else
             redirect_to root_path, notice: 'Student program was successfully created.'
-          end   
+          end
         }
         format.json { render :show, status: :created, location: @student_program }
       else
@@ -52,16 +52,16 @@ class StudentProgramsController < ApplicationController
   def update
     respond_to do |format|
       if @student_program.update(student_program_params)
-        format.html { 
-          if params[:student_id] 
+        format.html {
+          if params[:student_id]
             @student = Student.find(@student_program.student_id)
             redirect_to @student, notice: 'Student program was successfully updated.'
-          elsif params[:program_id] 
+          elsif params[:program_id]
             @program = Program.find(@student_program.program_id)
             redirect_to @program, notice: 'Student program was successfully updated.'
           else
             redirect_to root_path, notice: 'Student program was successfully updated.'
-          end    
+          end
         }
         format.json { render :show, status: :ok, location: @student_program }
       else
@@ -70,7 +70,7 @@ class StudentProgramsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @student_program.destroy
     respond_to do |format|
@@ -87,6 +87,6 @@ class StudentProgramsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_program_params
-      params.require(:student_program).permit(:active, :student_id, :program_id)
+      params.require(:student_program).permit(:active, :student_id, :program_id, :start, :end)
     end
 end

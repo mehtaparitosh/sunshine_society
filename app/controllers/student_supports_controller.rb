@@ -3,21 +3,21 @@ class StudentSupportsController < ApplicationController
   before_action :set_student_support, only: [:edit, :update, :destroy]
 
   def new
-    if params[:student_id] 
+    if params[:student_id]
       @student = Student.find(params[:student_id])
-    elsif params[:support_id] 
+    elsif params[:support_id]
       @support = Support.find(params[:support_id])
     else
-    end  
+    end
     @students = Student.all
     @supports = Support.all
     @student_support = StudentSupport.new
   end
 
   def edit
-    if params[:student_id] 
+    if params[:student_id]
       @student = Student.find(params[:student_id])
-    elsif params[:support_id] 
+    elsif params[:support_id]
       @support = Support.find(params[:support_id])
     else
     end
@@ -30,16 +30,16 @@ class StudentSupportsController < ApplicationController
 
     respond_to do |format|
       if @student_support.save
-        format.html { 
-          if params[:student_id] 
+        format.html {
+          if params[:student_id]
             @student = Student.find(@student_support.student_id)
             redirect_to @student, notice: 'Student support was successfully created.'
-          elsif params[:support_id] 
+          elsif params[:support_id]
             @support = Support.find(@student_support.support_id)
             redirect_to @support, notice: 'Student support was successfully created.'
           else
             redirect_to root_path, notice: 'Student support was successfully created.'
-          end  
+          end
         }
         format.json { render :show, status: :created, location: @student_support }
       else
@@ -52,16 +52,16 @@ class StudentSupportsController < ApplicationController
   def update
     respond_to do |format|
       if @student_support.update(student_support_params)
-        format.html { 
-          if params[:student_id] 
+        format.html {
+          if params[:student_id]
             @student = Student.find(@student_support.student_id)
             redirect_to @student, notice: 'Student support was successfully updated.'
-          elsif params[:support_id] 
+          elsif params[:support_id]
             @support = Support.find(@student_support.support_id)
             redirect_to @support, notice: 'Student support was successfully updated.'
           else
             redirect_to root_path, notice: 'Student support was successfully updated.'
-          end  
+          end
         }
         format.json { render :show, status: :ok, location: @student_support }
       else
@@ -70,7 +70,7 @@ class StudentSupportsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @student_support.destroy
     respond_to do |format|
@@ -87,6 +87,6 @@ class StudentSupportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_support_params
-      params.require(:student_support).permit(:active, :student_id, :support_id)
+      params.require(:student_support).permit(:active, :student_id, :support_id, :start, :end)
     end
 end
