@@ -1,15 +1,86 @@
-%h1= @coordinator.name
-= link_to 'Back', coordinators_path
-|
-= link_to "Edit", edit_coordinator_path(@coordinator)
+%small
+	= link_to "Home", root_path, class: ""
+	= "/"
+	= link_to "Coordinators", coordinators_path, class: ""
+	= "/"
+	= "#{@coordinator.name}"
 
-%hr
-%h4 Students
-%small= link_to "Add Students", new_student_coordinator_path(coordinator_id: @coordinator.id)
-- @student_coordinators.each do |student_coordinator|
-	%p
-		= link_to student_coordinator.student.name, student_path(student_coordinator.student_id)
-		|
-		= student_coordinator.active
-		| 
-		= link_to "Edit", edit_student_coordinator_path(student_coordinator, coordinator_id: @coordinator.id)
+.heading
+	%h1= "#{@coordinator.name}: #{@coordinator.co_id}"
+	%p.edit
+		= link_to edit_coordinator_path(@coordinator) do
+			%i.fa.fa-pencil-square-o
+	%p.print
+		%i.fa.fa-print
+.card
+	.card-body
+		.row
+			.col-md-6
+				%h3 General Information
+				%p= "Name: #{@coordinator.name}"
+				%p= "Gender: #{@coordinator.gender.capitalize}"
+				-if @coordinator.dob
+					%p= "Date of Birth: #{@coordinator.dob.strftime("%B %d, %Y")}"
+				-else
+					%p= "Date of Birth: - "
+				-if @coordinator.doj
+					%p= "Date of Joining: #{@coordinator.doj.strftime("%B %d, %Y")}"
+				-else
+					%p= "Date of Joining: - "
+
+
+				- if @coordinator.active
+					%p.active-block
+						Status:
+						-# %span.active
+						%span.table-success Active
+				- else
+					%p.inactive-block
+						Status:
+						-# %span.inactive
+						%span.table-danger Inactive
+					%p= "Date of Leaving: #{@coordinator.dol}"
+			.col-md-6
+				%h3 Additional Information
+
+				%p= "E-Mail: #{@coordinator.email}"
+				%p= "Contact: #{@coordinator.contact}"
+				%p= "Address: #{@coordinator.address}"
+				%p= "Pincode: #{@coordinator.pincode}"
+
+%br
+%h4 Student
+%small= link_to "Add Students", new_student_coordinator_path(coordinator_id: @coordinator.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
+
+	%tbody
+		- num = 1
+		- @student_coordinators.each do |student_coordinator|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if student_coordinator.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to student_coordinator.student.name, student_path(student_coordinator.student_id)
+				%td
+					- if student_coordinator.start
+						= student_coordinator.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if student_coordinator.end
+						= student_coordinator.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_student_coordinator_path(student_coordinator, coordinator_id: @coordinator.id)
+			-num = num+1

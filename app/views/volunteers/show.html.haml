@@ -1,26 +1,127 @@
-%h1= "#{@volunteer.vol_id}: #{@volunteer.name}"
-= link_to "Edit", edit_volunteer_path(@volunteer)
-|
-=link_to "Back", volunteers_path
+%small
+	= link_to "Home", root_path, class: ""
+	= "/"
+	= link_to "Sponsors", volunteers_path, class: ""
+	= "/"
+	= "#{@volunteer.name}"
 
-%hr
+.heading
+	%h1= "#{@volunteer.name}: #{@volunteer.vol_id}"
+	%p.edit
+		= link_to edit_volunteer_path(@volunteer) do
+			%i.fa.fa-pencil-square-o
+	%p.print
+		%i.fa.fa-print
+
+
+.card
+	.card-body
+		.row
+			.col-md-6
+				%h3 General Information
+				%p= "Name: #{@volunteer.name}"
+				%p= "Gender: #{@volunteer.gender.capitalize}"
+				%p= "Days Available: #{@volunteer.days_available}"
+				-if @volunteer.dob
+					%p= "Date of Birth: #{@volunteer.dob.strftime("%B %d, %Y")}"
+				-else
+					%p= "Date of Birth: - "
+				-if @volunteer.doj
+					%p= "Date of Joining: #{@volunteer.doj.strftime("%B %d, %Y")}"
+				-else
+					%p= "Date of Joining: - "
+
+
+				- if @volunteer.active
+					%p.active-block
+						Status:
+						-# %span.active
+						%span.table-success Active
+				- else
+					%p.inactive-block
+						Status:
+						-# %span.inactive
+						%span.table-danger Inactive
+					%p= "Date of Leaving: #{@volunteer.dol}"
+			.col-md-6
+				%h3 Additional Information
+				%p= "Occupation: #{@volunteer.occupation}"
+				%p= "E-Mail: #{@volunteer.email}"
+				%p= "Contact: #{@volunteer.contact}"
+				%p= "Address: #{@volunteer.address}"
+				%p= "Pincode: #{@volunteer.pincode}"
+
+
+%br
 %h4 Schools
-%small= link_to "Add School", new_volunteer_school_path(volunteer_id: @volunteer.id)
-- @volunteer_schools.each do |volunteer_school|
-	%p
-		= link_to volunteer_school.school.name, school_path(volunteer_school.school_id)
-		|
-		= volunteer_school.active
-		| 
-		= link_to "Edit", edit_volunteer_school_path(volunteer_school, volunteer_id: @volunteer.id)
+%small= link_to "Add School", new_volunteer_school_path(volunteer_id: @volunteer.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
 
-%hr
+	%tbody
+		- num = 1
+		- @volunteer_schools.each do |volunteer_school|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if volunteer_school.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to volunteer_school.school.name, school_path(volunteer_school.school_id)
+				%td
+					- if volunteer_school.start
+						= volunteer_school.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if volunteer_school.end
+						= volunteer_school.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_volunteer_school_path(volunteer_school, volunteer_id: @volunteer.id)
+			-num = num+1
+
+%br
 %h4 Students
-%small= link_to "Add Students", new_student_volunteer_path(volunteer_id: @volunteer.id)
-- @student_volunteers.each do |student_volunteer|
-	%p
-		= link_to student_volunteer.student.name, student_path(student_volunteer.student_id)
-		|
-		= student_volunteer.active
-		| 
-		= link_to "Edit", edit_student_volunteer_path(student_volunteer, volunteer_id: @volunteer.id)
+%small= link_to "Add Students", new_student_volunteer_path(volunteer_id: @volunteer.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
+
+	%tbody
+		- num = 1
+		- @student_volunteers.each do |student_volunteer|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if student_volunteer.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to student_volunteer.student.name, student_path(student_volunteer.student_id)
+				%td
+					- if student_volunteer.start
+						= student_volunteer.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if student_volunteer.end
+						= student_volunteer.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_student_volunteer_path(student_volunteer, volunteer_id: @volunteer.id)
+			-num = num+1

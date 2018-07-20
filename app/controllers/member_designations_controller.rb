@@ -3,21 +3,21 @@ class MemberDesignationsController < ApplicationController
   before_action :set_member_designation, only: [:edit, :update, :destroy]
 
   def new
-    if params[:member_id] 
+    if params[:member_id]
       @member = Member.find(params[:member_id])
-    elsif params[:designation_id] 
+    elsif params[:designation_id]
       @designation = Designation.find(params[:designation_id])
     else
-    end  
+    end
     @members = Member.all
     @designations = Designation.all
     @member_designation = MemberDesignation.new
   end
 
   def edit
-    if params[:member_id] 
+    if params[:member_id]
       @member = Member.find(params[:member_id])
-    elsif params[:designation_id] 
+    elsif params[:designation_id]
       @designation = Designation.find(params[:designation_id])
     else
     end
@@ -30,16 +30,16 @@ class MemberDesignationsController < ApplicationController
 
     respond_to do |format|
       if @member_designation.save
-        format.html { 
-          if params[:member_id] 
+        format.html {
+          if params[:member_id]
             @member = Member.find(@member_designation.member_id)
             redirect_to @member, notice: 'member designation was successfully created.'
-          elsif params[:designation_id] 
+          elsif params[:designation_id]
             @designation = Designation.find(@member_designation.designation_id)
             redirect_to @designation, notice: 'member designation was successfully created.'
           else
             redirect_to root_path, notice: 'member designation was successfully created.'
-          end 
+          end
         }
         format.json { render :show, status: :created, location: @member_designation }
       else
@@ -52,16 +52,16 @@ class MemberDesignationsController < ApplicationController
   def update
     respond_to do |format|
       if @member_designation.update(member_designation_params)
-        format.html { 
-          if params[:member_id] 
+        format.html {
+          if params[:member_id]
             @member = Member.find(@member_designation.member_id)
             redirect_to @member, notice: 'member designation was successfully updated.'
-          elsif params[:designation_id] 
+          elsif params[:designation_id]
             @designation = Designation.find(@member_designation.designation_id)
             redirect_to @designation, notice: 'member designation was successfully updated.'
           else
             redirect_to root_path, notice: 'member designation was successfully updated.'
-          end 
+          end
         }
         format.json { render :show, status: :ok, location: @member_designation }
       else
@@ -70,7 +70,7 @@ class MemberDesignationsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @member_designation.destroy
     respond_to do |format|
@@ -87,6 +87,6 @@ class MemberDesignationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_designation_params
-      params.require(:member_designation).permit(:active, :member_id, :designation_id)
+      params.require(:member_designation).permit(:active, :member_id, :designation_id, :start, :end)
     end
 end

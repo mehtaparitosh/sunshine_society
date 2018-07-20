@@ -1,27 +1,127 @@
-%h1= "#{@employee.em_id}: #{@employee.name}"
-= link_to 'Back', employees_path
-| 
-= link_to "Edit", edit_employee_path
+%small
+	= link_to "Home", root_path, class: ""
+	= "/"
+	= link_to "Employees", employees_path, class: ""
+	= "/"
+	= "#{@employee.name}"
 
-%hr
+.heading
+	%h1= "#{@employee.name}: #{@employee.em_id}"
+	%p.edit
+		= link_to edit_employee_path(@employee) do
+			%i.fa.fa-pencil-square-o
+	%p.print
+		%i.fa.fa-print
+
+.card
+	.card-body
+		.row
+			.col-md-6
+				%h3 General Information
+				%p= "Name: #{@employee.name}"
+				%p= "Gender: #{@employee.gender.capitalize}"
+				%p= "Education: #{@employee.education}"
+				%p= "Compensation: #{@employee.compensation}"
+
+				-if @employee.dob
+					%p= "Date of Birth: #{@employee.dob.strftime("%B %d, %Y")}"
+				-else
+					%p= "Date of Birth: - "
+				-if @employee.doj
+					%p= "Date of Joining: #{@employee.doj.strftime("%B %d, %Y")}"
+				-else
+					%p= "Date of Joining: - "
+
+
+				- if @employee.active
+					%p.active-block
+						Status:
+						-# %span.active
+						%span.table-success Active
+				- else
+					%p.inactive-block
+						Status:
+						-# %span.inactive
+						%span.table-danger Inactive
+					%p= "Date of Leaving: #{@employee.dol}"
+			.col-md-6
+				%h3 Additional Information
+				%p= "Cheque Name: #{@employee.cheque_name}"
+				%p= "E-Mail: #{@employee.email}"
+				%p= "Contact: #{@employee.contact}"
+				%p= "Address: #{@employee.address}"
+				%p= "Pincode: #{@employee.pincode}"
+
+%br
 %h4 Designation
-%small= link_to "Add Designation", new_employee_designation_path(employee_id: @employee.id)
-- @employee_designations.each do |employee_designation|
-	%p
-		= link_to employee_designation.designation.name, designation_path(employee_designation.designation.id)
-		|
-		= employee_designation.active
-		| 
-		= link_to "Edit", edit_employee_designation_path(employee_designation, employee_id: @employee.id)
+%small= link_to "Add Designation", new_employee_designation_path(employee_id: @employee.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
 
-%hr
+	%tbody
+		- num = 1
+		- @employee_designations.each do |employee_designation|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if employee_designation.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to employee_designation.designation.name, designation_path(employee_designation.designation.id)
+				%td
+					- if employee_designation.start
+						= employee_designation.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if employee_designation.end
+						= employee_designation.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_employee_designation_path(employee_designation, employee_id: @employee.id)
+			-num = num+1
+
+%br
 %h4 Workplace
-%small= link_to "Add Workplace", new_employee_workplace_path(employee_id: @employee.id)
-- @employee_workplaces.each do |employee_workplace|
-	%p
-		= link_to employee_workplace.workplace.name, workplace_path(employee_workplace.workplace.id)
-		|
-		= employee_workplace.active
-		| 
-		= link_to "Edit", edit_employee_workplace_path(employee_workplace, employee_id: @employee.id)
+%small= link_to "Add Workplace", new_employee_workplace_path(employee_id: @employee.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
 
+	%tbody
+		- num = 1
+		- @employee_workplaces.each do |employee_workplace|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if employee_workplace.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to employee_workplace.workplace.name, workplace_path(employee_workplace.workplace.id)
+				%td
+					- if employee_workplace.start
+						= employee_workplace.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if employee_workplace.end
+						= employee_workplace.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_employee_workplace_path(employee_workplace, employee_id: @employee.id)
+			-num = num+1

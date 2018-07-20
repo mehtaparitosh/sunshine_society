@@ -1,27 +1,129 @@
-%h1= "#{@sponsor.sp_id}: #{@sponsor.name}"
+%small
+	= link_to "Home", root_path, class: ""
+	= "/"
+	= link_to "Sponsor", sponsors_path, class: ""
+	= "/"
+	= "#{@sponsor.name}"
 
-= link_to "Back", sponsors_path
-|
-= link_to "Edit", edit_sponsor_path(@sponsor)
+.heading
+	%h1= "#{@sponsor.name}: #{@sponsor.sp_id}"
+	%p.edit
+		= link_to edit_sponsor_path(@sponsor) do
+			%i.fa.fa-pencil-square-o
+	%p.print
+		%i.fa.fa-print
 
-%hr
+.card
+	.card-body
+		.row
+			.col-md-6
+				%h3 General Information
+				%p= "Name: #{@sponsor.name}"
+				%p= "Gender: #{@sponsor.gender.capitalize}"
+				%p= "Sponsor Type: #{@sponsor.sponsor_type}"
+				-if @sponsor.dob
+					%p= "Date of Birth: #{@sponsor.dob.strftime("%B %d, %Y")}"
+				-else
+					%p= "Date of Birth: - "
+				-if @sponsor.doj
+					%p= "Date of Joining: #{@sponsor.doj.strftime("%B %d, %Y")}"
+				-else
+					%p= "Date of Joining: - "
+
+
+				- if @sponsor.active
+					%p.active-block
+						Status:
+						-# %span.active
+						%span.table-success Active
+				- else
+					%p.inactive-block
+						Status:
+						-# %span.inactive
+						%span.table-danger Inactive
+					%p= "Date of Leaving: #{@sponsor.dol}"
+			.col-md-6
+				%h3 Additional Information
+				%p= "E-Mail: #{@sponsor.email}"
+				%p= "Contact: #{@sponsor.contact}"
+				%p= "Address: #{@sponsor.address}"
+				%p= "Pincode: #{@sponsor.pincode}"
+
+%br
 %h4 Program
-%small= link_to "Add Program", new_sponsor_program_path(sponsor_id: @sponsor.id)
-- @sponsor_programs.each do |sponsor_program|
-	%p
-		= link_to sponsor_program.program.name, program_path(sponsor_program.program_id)
-		|
-		= sponsor_program.active
-		| 
-		= link_to "Edit", edit_sponsor_program_path(sponsor_program, sponsor_id: @sponsor.id)
+%small= link_to "Add Program", new_sponsor_program_path(sponsor_id: @sponsor.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
 
-%hr
+	%tbody
+		- num = 1
+		- @sponsor_programs.each do |sponsor_program|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if sponsor_program.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to sponsor_program.program.name, program_path(sponsor_program.program_id)
+				%td
+					- if sponsor_program.start
+						= sponsor_program.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if sponsor_program.end
+						= sponsor_program.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_sponsor_program_path(sponsor_program, sponsor_id: @sponsor.id)
+			-num = num+1
+
+%br
 %h4 Students
-%small= link_to "Add Students", new_student_sponsor_path(sponsor_id: @sponsor.id)
-- @student_sponsors.each do |student_sponsor|
-	%p
-		= link_to student_sponsor.student.name, student_path(student_sponsor.student_id)
-		|
-		= student_sponsor.active
-		| 
-		= link_to "Edit", edit_student_sponsor_path(student_sponsor, sponsor_id: @sponsor.id)
+%small= link_to "Add Students", new_student_sponsor_path(sponsor_id: @sponsor.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Academic Year
+			%th{:scope => "col"} Sponosr Type
+			%th{:scope => "col"} Format
+
+
+	%tbody
+		- num = 1
+		- @student_sponsors.each do |student_sponsor|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if student_sponsor.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to student_sponsor.student.name, student_path(student_sponsor.student_id)
+				%td
+					- if student_sponsor.start
+						= student_sponsor.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if student_sponsor.end
+						= student_sponsor.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= student_sponsor.academic_year
+				%td= student_sponsor.sponsor_type
+				%td= link_to "Edit", edit_student_sponsor_path(student_sponsor, sponsor_id: @sponsor.id)
+			-num = num+1

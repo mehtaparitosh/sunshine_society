@@ -44,7 +44,7 @@ class MembersController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @member.destroy
     respond_to do |format|
@@ -61,6 +61,6 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:mem_id, :name, :gender, :dob, :doj, :contact, :email, :address, :country, :active, :effective_till, :dol, :pincode, :type, :voting_right)
+      params.require(:member).permit(:mem_id, :name, :gender, :dob, :doj, :contact, :email, :address, :country, :active, :effective_till, :dol, :pincode, :kind, :voting_right)
     end
 end

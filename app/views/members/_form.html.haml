@@ -4,7 +4,7 @@
       = f.error_notification
       .form-inputs
         = f.input :name
-        = f.input :gender, as: :radio_buttons, collection: [['male', 'Male'], ['female', 'Female']], label_method: :second, value_method: :first, required: true 
+        = f.input :gender, as: :radio_buttons, collection: [['male', 'Male'], ['female', 'Female']], label_method: :second, value_method: :first, required: true
         = f.input :dob, as: :date, html5: true
         = f.input :doj, as: :date, html5: true
         = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
@@ -18,8 +18,8 @@
         = f.input :country, :as => :string
         = f.input :pincode
 
-        = f.input :type
-        = f.input :active, as: :radio_buttons, collection: [['true', 'Yes'], ['false', 'No']], label_method: :second, value_method: :first, required: true
+        = f.input :kind, label: "Type"
+        -# = f.input :active, as: :radio_buttons, collection: [['true', 'Yes'], ['false', 'No']], label_method: :second, value_method: :first, required: true
 
         / Designation is to be added at the show page
 

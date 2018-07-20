@@ -23,7 +23,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        @employee.st_em = "SS-EM-#{@employee.id}"
+        @employee.em_id = "SS-EM-#{@employee.id}"
         @employee.save
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
         format.json { render :show, status: :created, location: @employee }
@@ -45,7 +45,7 @@ class EmployeesController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @employee.destroy
     respond_to do |format|

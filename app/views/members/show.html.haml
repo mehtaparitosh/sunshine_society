@@ -1,16 +1,90 @@
-%h1= "#{@member.mem_id}: #{@member.name}"
 
-= link_to 'Back', members_path
-|
-= link_to "Edit", edit_member_path(@member)
+%small
+	= link_to "Home", root_path, class: ""
+	= "/"
+	= link_to "Members", members_path, class: ""
+	= "/"
+	= "#{@member.name}"
 
-%hr
+.heading
+	%h1= "#{@member.name}: #{@member.mem_id}"
+	%p.edit
+		= link_to edit_member_path(@member) do
+			%i.fa.fa-pencil-square-o
+	%p.print
+		%i.fa.fa-print
+
+.card
+	.card-body
+		.row
+			.col-md-6
+				%h3 General Information
+				%p= "Name: #{@member.name}"
+				%p= "Gender: #{@member.gender.capitalize}"
+				%p= "Member Type: #{@member.kind}"
+
+				-if @member.dob
+					%p= "Date of Birth: #{@member.dob.strftime("%B %d, %Y")}"
+				-else
+					%p= "Date of Birth: - "
+				-if @member.doj
+					%p= "Date of Joining: #{@member.doj.strftime("%B %d, %Y")}"
+				-else
+					%p= "Date of Joining: - "
+
+
+				- if @member.active
+					%p.active-block
+						Status:
+						-# %span.active
+						%span.table-success Active
+				- else
+					%p.inactive-block
+						Status:
+						-# %span.inactive
+						%span.table-danger Inactive
+					%p= "Date of Leaving: #{@member.dol}"
+			.col-md-6
+				%h3 Additional Information
+				%p= "Effective Till: #{@member.effective_till}"
+				%p= "E-Mail: #{@member.email}"
+				%p= "Contact: #{@member.contact}"
+				%p= "Address: #{@member.address}"
+				%p= "Pincode: #{@member.pincode}"
+
+%br
 %h4 Designation
-%small= link_to "Add Designation", new_member_designation_path(member_id: @member.id)
-- @member_designations.each do |member_designation|
-	%p
-		= link_to member_designation.designation.name, designation_path(member_designation.designation.id)
-		|
-		= member_designation.active
-		| 
-		= link_to "Edit", edit_member_designation_path(member_designation, member_id: @member.id)
+%small= link_to "Add Designation", new_member_designation_path(member_id: @member.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
+
+	%tbody
+		- num = 1
+		- @member_designations.each do |member_designation|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if member_designation.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to member_designation.designation.name, designation_path(member_designation.designation.id)
+				%td
+					- if member_designation.start
+						= member_designation.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if member_designation.end
+						= member_designation.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_member_designation_path(member_designation, member_id: @member.id)
+			-num = num+1

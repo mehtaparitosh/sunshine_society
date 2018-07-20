@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_23_121803) do
+ActiveRecord::Schema.define(version: 2018_07_20_124117) do
 
   create_table "coordinators", force: :cascade do |t|
     t.string "co_id"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 2018_06_23_121803) do
     t.boolean "active"
     t.string "designation"
     t.date "effective_till"
-    t.string "type"
+    t.string "kind"
     t.boolean "voting_right"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

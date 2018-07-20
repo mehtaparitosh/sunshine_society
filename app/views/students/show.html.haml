@@ -1,7 +1,7 @@
 %small
-	= link_to "Home", root_path, class: "btn btn-nav"
+	= link_to "Home", root_path, class: ""
 	= "/"
-	= link_to "Students", students_path, class: "btn btn-nav"
+	= link_to "Students", students_path, class: ""
 	= "/"
 	= "#{@student.name}"
 .heading
@@ -55,6 +55,7 @@
 					- else
 						%p= "Sec. Contact(s): #{@student.contact_2}"
 					%p= "Address: #{@student.address}"
+					%p= "Pincode: #{@student.pincode}"
 					%p= "Father's Name: #{@student.fathers_name}"
 					%p= "Father's Occupation: #{@student.fathers_occupation}"
 					%p= "Mother's Name: #{@student.mothers_name}"

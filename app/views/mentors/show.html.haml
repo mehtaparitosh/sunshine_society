@@ -1,15 +1,87 @@
-%h1= @mentor.name
-= link_to 'Back', mentors_path
-|
-= link_to "Edit", edit_mentor_path(@mentor)
+%small
+	= link_to "Home", root_path, class: ""
+	= "/"
+	= link_to "Mentor", mentors_path, class: ""
+	= "/"
+	= "#{@mentor.name}"
 
-%hr
+.heading
+	%h1= "#{@mentor.name}: #{@mentor.men_id}"
+	%p.edit
+		= link_to edit_mentor_path(@mentor) do
+			%i.fa.fa-pencil-square-o
+	%p.print
+		%i.fa.fa-print
+
+.card
+	.card-body
+		.row
+			.col-md-6
+				%h3 General Information
+				%p= "Name: #{@mentor.name}"
+				%p= "Gender: #{@mentor.gender.capitalize}"
+
+				-if @mentor.dob
+					%p= "Date of Birth: #{@mentor.dob.strftime("%B %d, %Y")}"
+				-else
+					%p= "Date of Birth: - "
+				-if @mentor.doj
+					%p= "Date of Joining: #{@mentor.doj.strftime("%B %d, %Y")}"
+				-else
+					%p= "Date of Joining: - "
+
+
+				- if @mentor.active
+					%p.active-block
+						Status:
+						-# %span.active
+						%span.table-success Active
+				- else
+					%p.inactive-block
+						Status:
+						-# %span.inactive
+						%span.table-danger Inactive
+					%p= "Date of Leaving: #{@mentor.dol}"
+			.col-md-6
+				%h3 Additional Information
+				%p= "E-Mail: #{@mentor.email}"
+				%p= "Contact: #{@mentor.contact}"
+				%p= "Address: #{@mentor.address}"
+				%p= "Pincode: #{@mentor.pincode}"
+
+%br
 %h4 Students
-%small= link_to "Add Students", new_student_mentor_path(mentor_id: @mentor.id)
-- @student_mentors.each do |student_mentor|
-	%p
-		= link_to student_mentor.student.name, student_path(student_mentor.student_id)
-		|
-		= student_mentor.active
-		| 
-		= link_to "Edit", edit_student_mentor_path(student_mentor, mentor_id: @mentor.id)
+%small= link_to "Add Students", new_student_mentor_path(mentor_id: @mentor.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
+
+	%tbody
+		- num = 1
+		- @student_mentors.each do |student_mentor|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if student_mentor.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to student_mentor.student.name, student_path(student_mentor.student_id)
+				%td
+					- if student_mentor.start
+						= student_mentor.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if student_mentor.end
+						= student_mentor.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_student_mentor_path(student_mentor, mentor_id: @mentor.id)
+			-num = num+1

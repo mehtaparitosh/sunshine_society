@@ -1,26 +1,95 @@
-%h1= @designation.name
-= link_to 'Back', designations_path
-|
-= link_to 'Edit', edit_designation_path
+%small
+	= link_to "Home", root_path, class: ""
+	= "/"
+	= link_to "Designations", designations_path, class: ""
+	= "/"
+	= "#{@designation.name}"
 
-%hr
+.heading
+	%h1= "#{@designation.name}"
+	%p.edit
+		= link_to edit_designation_path(@designation) do
+			%i.fa.fa-pencil-square-o
+	%p.print
+		%i.fa.fa-print
+
+.card
+	.card-body
+		.row
+			.col-md-6
+				%h3 Description
+				%p= @designation.comments
+
+%br
 %h4 Members
-%small= link_to "Add Members", new_member_designation_path(designation_id: @designation.id)
-- @member_designations.each do |member_designation|
-	%p
-		= link_to member_designation.member.name, member_path(member_designation.member_id)
-		|
-		= member_designation.active
-		| 
-		= link_to "Edit", edit_member_designation_path(member_designation, designation_id: @designation.id)
+%small= link_to "Add Members", new_member_designation_path(designation_id: @designation.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
 
-%hr
+	%tbody
+		- num = 1
+		- @member_designations.each do |member_designation|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if member_designation.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to member_designation.member.name, member_path(member_designation.member_id)
+				%td
+					- if member_designation.start
+						= member_designation.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if member_designation.end
+						= member_designation.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_member_designation_path(member_designation, designation_id: @designation.id)
+			-num = num+1
+
+%br
 %h4 Employees
-%small= link_to "Add Employees", new_employee_designation_path(designation_id: @designation.id)
-- @employee_designations.each do |employee_designation|
-	%p
-		= link_to employee_designation.employee.name, employee_path(employee_designation.employee_id)
-		|
-		= employee_designation.active
-		| 
-		= link_to "Edit", edit_employee_designation_path(employee_designation, designation_id: @designation.id)
+%small= link_to "Add Employees", new_employee_designation_path(designation_id: @designation.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
+
+	%tbody
+		- num = 1
+		- @employee_designations.each do |employee_designation|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if employee_designation.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to employee_designation.employee.name, employee_path(employee_designation.employee_id)
+				%td
+					- if employee_designation.start
+						= employee_designation.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if employee_designation.end
+						= employee_designation.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_employee_designation_path(employee_designation, designation_id: @designation.id)
+			-num = num+1
