@@ -1,11 +1,13 @@
 %h1 Edit Student's After School Support
--if params[:student_id] 
+-if params[:student_id]
 	%h4= "#{@student.st_id}: #{@student.name}"
 - elsif params[:support_id]
 	%h4= "#{@support.name}"
 - else
-= render 'form'
-- if params[:student_id] 
-	= link_to "Cancel", student_path(@student)
+- if params[:student_id]
+	= link_to "Cancel", student_path(@student), class: "btn btn-danger"
 - elsif params[:support_id]
-	= link_to "Cancel", support_path(@support)
+	= link_to "Cancel", support_path(@support), class: "btn btn-danger"
+%br
+%br
+= render 'form'

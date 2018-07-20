@@ -1,9 +1,11 @@
-.form
-  = simple_form_for(@program) do |f|
-    = f.error_notification
-    .form-inputs
-      = f.input :name
-      = f.input :full_form
-      = f.input :comments
-    .form-actions
-      = f.button :submit
+.card
+  .card-body
+    .form.container 
+      = simple_form_for(@program) do |f|
+        = f.error_notification
+        .form-inputs
+          = f.input :name
+          = f.input :full_form
+          = f.input :comments
+        .form-actions
+          = f.button :submit, class: "btn btn-submit btn-lg"

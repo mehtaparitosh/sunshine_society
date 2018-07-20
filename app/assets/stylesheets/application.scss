@@ -60,6 +60,55 @@
   text-align: center;
 }
 
+/*-------------------------------------*/
+/* Button */
+/*-------------------------------------*/
+
+.btn-submit {
+  color: #353A3F;
+  background-color: #FFDF87;
+  border-color: #130269;
+}
+
+.btn-submit:hover,
+.btn-submit:focus,
+.btn-submit:active,
+.btn-submit.active,
+.open .dropdown-toggle.btn-submit {
+  color: #353A3F;
+  background-color: #FFBB00;
+  border-color: #130269;
+}
+
+.btn-submit:active,
+.btn-submit.active,
+.open .dropdown-toggle.btn-submit {
+  background-image: none;
+}
+
+.btn-submit.disabled,
+.btn-submit[disabled],
+fieldset[disabled] .btn-submit,
+.btn-submit.disabled:hover,
+.btn-submit[disabled]:hover,
+fieldset[disabled] .btn-submit:hover,
+.btn-submit.disabled:focus,
+.btn-submit[disabled]:focus,
+fieldset[disabled] .btn-submit:focus,
+.btn-submit.disabled:active,
+.btn-submit[disabled]:active,
+fieldset[disabled] .btn-submit:active,
+.btn-submit.disabled.active,
+.btn-submit[disabled].active,
+fieldset[disabled] .btn-submit.active {
+  background-color: #FFDF87;
+  border-color: #130269;
+}
+
+.btn-submit .badge {
+  color: #FFDF87;
+  background-color: #353A3F;
+}
 
 /*-------------------------------------*/
 /* LOGIN PAGE */

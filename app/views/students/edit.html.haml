@@ -1,3 +1,5 @@
 %h1 Edit Student
+= link_to "Back", student_path(@student), class: "btn btn-danger"
+%br
+%br
 = render 'form'
-%p= link_to "Back", student_path(@student), class: "btn btn-nav"

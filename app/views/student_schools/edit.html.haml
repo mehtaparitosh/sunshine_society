@@ -1,11 +1,13 @@
-%h1 Edit Students School
--if params[:student_id] 
+%h1 Edit Student's School
+-if params[:student_id]
 	%h4= "#{@student.st_id}: #{@student.name}"
 - elsif params[:school_id]
 	%h4= "#{@school.name}"
 - else
-= render 'form'
-- if params[:student_id] 
-	= link_to "Cancel", student_path(@student)
+- if params[:student_id]
+	= link_to "Cancel", student_path(@student), class: "btn btn-danger"
 - elsif params[:school_id]
-	= link_to "Cancel", school_path(@school)
+	= link_to "Cancel", school_path(@school), class: "btn btn-danger"
+%br
+%br
+= render 'form'

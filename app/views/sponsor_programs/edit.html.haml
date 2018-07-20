@@ -1,11 +1,13 @@
 %h1 Edit Sponsor's Programs
--if params[:sponsor_id] 
+-if params[:sponsor_id]
 	%h4= "#{@sponsor.sp_id}: #{@sponsor.name}"
 - elsif params[:program_id]
-	%h4= "#{@program.name}"
+	%h4= "#{@program.full_form}"
 - else
-= render 'form'
-- if params[:sponsor_id] 
-	= link_to "Cancel", sponsor_path(@sponsor)
+- if params[:sponsor_id]
+	= link_to "Cancel", sponsor_path(@sponsor), class: "btn btn-danger"
 - elsif params[:program_id]
-	= link_to "Cancel", program_path(@program)
+	= link_to "Cancel", program_path(@program), class: "btn btn-danger"
+%br
+%br
+= render 'form'

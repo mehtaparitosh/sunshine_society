@@ -1,11 +1,13 @@
-%h1 New Mentor for Student
--if params[:student_id] 
+%h1 Create Mentor for Student
+-if params[:student_id]
 	%h4= "#{@student.st_id}: #{@student.name}"
 - elsif params[:mentor_id]
 	%h4= "#{@mentor.men_id}: #{@mentor.name}"
 - else
-= render 'form'
-- if params[:student_id] 
-	= link_to "Cancel", student_path(@student)
+- if params[:student_id]
+	= link_to "Cancel", student_path(@student), class: "btn btn-danger"
 - elsif params[:mentor_id]
-	= link_to "Cancel", mentor_path(@mentor)
+	= link_to "Cancel", mentor_path(@mentor), class: "btn btn-danger"
+%br
+%br
+= render 'form'

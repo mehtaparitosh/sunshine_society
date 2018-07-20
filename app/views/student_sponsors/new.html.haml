@@ -1,11 +1,13 @@
-%h1 New Student's Sponsor
--if params[:student_id] 
+%h1 Create Student's Sponsor
+-if params[:student_id]
 	%h4= "#{@student.st_id}: #{@student.name}"
 - elsif params[:sponsor_id]
 	%h4= "#{@sponsor.sp_id}: #{@sponsor.name}"
 - else
-= render 'form'
-- if params[:student_id] 
-	= link_to "Cancel", student_path(@student)
+- if params[:student_id]
+	= link_to "Cancel", student_path(@student), class: "btn btn-danger"
 - elsif params[:sponsor_id]
-	= link_to "Cancel", sponsor_path(@sponsor)
+	= link_to "Cancel", sponsor_path(@sponsor), class: "btn btn-danger"
+%br
+%br
+= render 'form'

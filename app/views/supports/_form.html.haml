@@ -1,10 +1,12 @@
-.form
-  = simple_form_for(@support) do |f|
-    = f.error_notification
-    .form-inputs
-      = f.input :name
-      = f.input :address
-      = f.input :contact
-      = f.input :comments
-    .form-actions
-      = f.button :submit
+.card
+  .card-body
+    .form.container
+      = simple_form_for(@support) do |f|
+        = f.error_notification
+        .form-inputs
+          = f.input :name
+          = f.input :address
+          = f.input :contact
+          = f.input :comments
+        .form-actions
+          = f.button :submit, class: "btn btn-submit btn-lg"

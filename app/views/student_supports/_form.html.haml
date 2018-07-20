@@ -1,17 +1,20 @@
-= simple_form_for(@student_support) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
-    = f.input :start, as: :date, html5: true
-    = f.input :end, as: :date, html5: true
-    = f.input :student_id ,:collection => @students,:label_method => :collection_values,:value_method => :id, prompt: "Select Student ID", :label => "Student ID" ,:include_blank => false
-    = f.input :support_id ,:collection => @supports,:label_method => :name,:value_method => :id, prompt: "Select Support", :label => "After School Support" ,:include_blank => false
+.card
+  .card-body
+    .form.container 
+      = simple_form_for(@student_support) do |f|
+        = f.error_notification
+        .form-inputs
+          = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
+          = f.input :start, as: :date, html5: true
+          = f.input :end, as: :date, html5: true
+          = f.input :student_id ,:collection => @students,:label_method => :collection_values,:value_method => :id, prompt: "Select Student ID", :label => "Student ID" ,:include_blank => false
+          = f.input :support_id ,:collection => @supports,:label_method => :name,:value_method => :id, prompt: "Select Support", :label => "After School Support" ,:include_blank => false
 
-  .form-actions
-  %br
-    -if @student
-      = f.button :submit, name: "student_id", value: @student.id, value: "Submit"
-    - elsif @support
-      = f.button :submit, name: "support_id", value: @support.id, value: "Submit"
-    - else
-      = f.button :submit
+        .form-actions
+        %br
+          -if @student
+            = f.button :submit, name: "student_id", value: @student.id, value: "Submit", class: "btn btn-submit btn-lg"
+          - elsif @support
+            = f.button :submit, name: "support_id", value: @support.id, value: "Submit", class: "btn btn-submit btn-lg"
+          - else
+            = f.button :submit, class: "btn btn-submit btn-lg"

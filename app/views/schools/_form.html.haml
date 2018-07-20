@@ -1,20 +1,21 @@
-.school
-  .form
-    = simple_form_for(@school) do |f|
-      = f.error_notification
-      .form-inputs
-        = f.input :name
-        = f.input :address
-        = f.input :contact_no
-        = f.input :contact_person
-        = f.input :contact_person_address
-        = f.input :contact_person_designation
-        = f.input :fees_type
-        = f.input :name_on_check
-        = f.input :board
-        = f.input :initial_class
-        = f.input :max_class
-        = f.input :comments
+.card
+  .card-body
+    .form.container 
+      = simple_form_for(@school) do |f|
+        = f.error_notification
+        .form-inputs
+          = f.input :name
+          = f.input :address
+          = f.input :contact_no
+          = f.input :contact_person
+          = f.input :contact_person_address
+          = f.input :contact_person_designation
+          = f.input :fees_type
+          = f.input :name_on_check
+          = f.input :board
+          = f.input :initial_class
+          = f.input :max_class
+          = f.input :comments
 
-      .form-actions
-        = f.button :submit
+        .form-actions
+          = f.button :submit, class: "btn btn-submit btn-lg"

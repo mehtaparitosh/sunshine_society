@@ -1,4 +1,6 @@
 %h1 Edit Employee
 
+= link_to 'Cancel', employee_path(@employee), class: "btn btn-danger"
+%br
+%br
 = render 'form'
-= link_to 'Cancel', employee_path(@employee)

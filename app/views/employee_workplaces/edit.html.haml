@@ -1,11 +1,13 @@
-%h1 Edit Employee Workplace
--if params[:employee_id] 
+%h1 Edit Employee of Workplace
+-if params[:employee_id]
 	%h4= "#{@employee.em_id}: #{@employee.name}"
 - elsif params[:workplace_id]
 	%h4= "#{@workplace.name}"
 - else
-= render 'form'
-- if params[:employee_id] 
-	= link_to "Cancel", employee_path(@employee)
+- if params[:employee_id]
+	= link_to "Cancel", employee_path(@employee), class: "btn btn-danger"
 - elsif params[:workplace_id]
-	= link_to "Cancel", workplace_path(@workplace)
+	= link_to "Cancel", workplace_path(@workplace), class: "btn btn-danger"
+%br
+%br
+= render 'form'
