@@ -1,27 +1,96 @@
-%h1= @program.name
 
-= link_to "Back", programs_path
-|
-= link_to "Edit", edit_program_path(@program)
+%small
+	= link_to "Home", root_path, class: ""
+	= "/"
+	= link_to "Programs", programs_path, class: ""
+	= "/"
+	= "#{@program.name}"
 
-%hr
+.heading
+	%h1= "#{@program.full_form}"
+	%p.edit
+		= link_to edit_program_path(@program) do
+			%i.fa.fa-pencil-square-o
+	%p.print
+		%i.fa.fa-print
+
+.card
+	.card-body
+		.row
+			.col-md-6
+				%h3 Description
+				%p= @program.comments
+
+%br
 %h4 Sponsors
-%small= link_to "Add Sponsors", new_sponsor_program_path(program_id: @program.id)
-- @sponsor_programs.each do |sponsor_program|
-	%p
-		= link_to sponsor_program.sponsor.name, sponsor_path(sponsor_program.sponsor_id)
-		|
-		= sponsor_program.active
-		| 
-		= link_to "Edit", edit_sponsor_program_path(sponsor_program, program_id: @program.id)
+%small= link_to "Add Sponsors", new_sponsor_program_path(program_id: @program.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
 
-%hr
+	%tbody
+		- num = 1
+		- @sponsor_programs.each do |sponsor_program|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if sponsor_program.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to sponsor_program.sponsor.name, sponsor_path(sponsor_program.sponsor_id)
+				%td
+					- if sponsor_program.start
+						= sponsor_program.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if sponsor_program.end
+						= sponsor_program.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_sponsor_program_path(sponsor_program, program_id: @program.id)
+			-num = num+1
+
+%br
 %h4 Students
-%small= link_to "Add Students", new_student_program_path(program_id: @program.id)
-- @student_programs.each do |student_program|
-	%p
-		= link_to student_program.student.name, student_path(student_program.student_id)
-		|
-		= student_program.active
-		| 
-		= link_to "Edit", edit_student_program_path(student_program, program_id: @program.id)
+%small= link_to "Add Students", new_student_program_path(program_id: @program.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
+
+	%tbody
+		- num = 1
+		- @student_programs.each do |student_program|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if student_program.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to student_program.student.name, student_path(student_program.student_id)
+				%td
+					- if student_program.start
+						= student_program.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if student_program.end
+						= student_program.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_student_program_path(student_program, program_id: @program.id)
+			-num = num+1

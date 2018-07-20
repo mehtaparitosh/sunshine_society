@@ -1,15 +1,60 @@
-%h1= @workplace.name
-= link_to "Back", workplaces_path
-|
-= link_to "Edit", edit_workplace_path(@workplace)
+%small
+	= link_to "Home", root_path, class: ""
+	= "/"
+	= link_to "Workplaces", workplaces_path, class: ""
+	= "/"
+	= "#{@workplace.name}"
 
-%hr
+.heading
+	%h1= "#{@workplace.name}"
+	%p.edit
+		= link_to edit_workplace_path(@workplace) do
+			%i.fa.fa-pencil-square-o
+	%p.print
+		%i.fa.fa-print
+
+.card
+	.card-body
+		.row
+			.col-md-6
+				%h3 General Information
+				%p= "Address: #{@workplace.address}"
+				%p= "Contact: #{@workplace.contact}"
+				%p= "Comments: #{@workplace.comments}"
+
+%br
 %h4 Employees
-%small= link_to "Add Employees", new_employee_workplace_path(workplace_id: @workplace.id)
-- @employee_workplaces.each do |employee_workplace|
-	%p
-		= link_to employee_workplace.employee.name, employee_path(employee_workplace.employee_id)
-		|
-		= employee_workplace.active
-		| 
-		= link_to "Edit", edit_employee_workplace_path(employee_workplace, workplace_id: @workplace.id)
+%small= link_to "Add Employees", new_employee_workplace_path(workplace_id: @workplace.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
+
+	%tbody
+		- num = 1
+		- @employee_workplaces.each do |employee_workplace|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if employee_workplace.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to employee_workplace.employee.name, employee_path(employee_workplace.employee_id)
+				%td
+					- if employee_workplace.start
+						= employee_workplace.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if employee_workplace.end
+						= employee_workplace.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_employee_workplace_path(employee_workplace, workplace_id: @workplace.id)
+			-num = num+1

@@ -1,15 +1,60 @@
-%h1= @support.name
-= link_to "Back", supports_path
-|
-= link_to "Edit", edit_support_path(@support)
+%small
+	= link_to "Home", root_path, class: ""
+	= "/"
+	= link_to "After School Supports", supports_path, class: ""
+	= "/"
+	= "#{@support.name}"
 
-%hr
+.heading
+	%h1= "#{@support.name}"
+	%p.edit
+		= link_to edit_support_path(@support) do
+			%i.fa.fa-pencil-square-o
+	%p.print
+		%i.fa.fa-print
+
+.card
+	.card-body
+		.row
+			.col-md-6
+				%h3 General Information
+				%p= "Address: #{@support.address}"
+				%p= "Contact: #{@support.contact}"
+				%p= "Comments: #{@support.comments}"
+
+%br
 %h4 Students
-%small= link_to "Add Students", new_student_support_path(support_id: @support.id)
-- @student_supports.each do |student_support|
-	%p
-		= link_to student_support.student.name, student_path(student_support.student_id)
-		|
-		= student_support.active
-		| 
-		= link_to "Edit", edit_student_support_path(student_support, support_id: @support.id)
+%small= link_to "Add Students", new_student_support_path(support_id: @support.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
+
+	%tbody
+		- num = 1
+		- @student_supports.each do |student_support|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if student_support.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to student_support.student.name, student_path(student_support.student_id)
+				%td
+					- if student_support.start
+						= student_support.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if student_support.end
+						= student_support.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_student_support_path(student_support, support_id: @support.id)
+			-num = num+1

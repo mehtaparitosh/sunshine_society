@@ -1,28 +1,113 @@
-%h1= @school.name
+%small
+	= link_to "Home", root_path, class: ""
+	= "/"
+	= link_to "Schools", schools_path, class: ""
+	= "/"
+	= "#{@school.name}"
 
-= link_to "Back", schools_path
-|
-= link_to "Edit", edit_school_path(@school)
+.heading
+	%h1= "#{@school.name}"
+	%p.edit
+		= link_to edit_school_path(@school) do
+			%i.fa.fa-pencil-square-o
+	%p.print
+		%i.fa.fa-print
 
-%hr
+.card
+	.card-body
+		.row
+			.col-md-6
+				%h3 General Information
+				%p= "Board: #{@school.board}"
+				%p= "Address: #{@school.address}"
+				%p= "Contact No: #{@school.contact_no}"
+				%p= "Contact Person: #{@school.contact_person}"
+				%p= "Contact Person Designation: #{@school.contact_person_designation}"
+				%p= "Contact Person Address: #{@school.contact_person_address}"
+			.col-md-6
+				%h3 Additional Information
+				%p= "Max Class: #{@school.max_class}"
+				%p= "Fees Type: #{@school.fees_type}"
+				%p= "Name On Check: #{@school.name_on_check}"
+				%p= "Initial Class: #{@school.initial_class}"
+				%p= "Comments: #{@school.comments}"
+
+%br
 %h4 Volunteers
-%small= link_to "Add Volunteer", new_volunteer_school_path(school_id: @school.id)
-- @volunteer_schools.each do |volunteer_school|
-	%p
-		= link_to volunteer_school.volunteer.name, volunteer_path(volunteer_school.volunteer_id)
-		|
-		= volunteer_school.active
-		| 
-		= link_to "Edit", edit_volunteer_school_path(volunteer_school, school_id: @school.id)
-		
-%hr
-%h4 Students
-%small= link_to "Add Students", new_student_school_path(school_id: @school.id)
-- @student_schools.each do |student_school|
-	%p
-		= link_to student_school.student.name, student_path(student_school.student_id)
-		|
-		= student_school.active
-		| 
-		= link_to "Edit", edit_student_school_path(student_school, school_id: @school.id)
+%small= link_to "Add Volunteer", new_volunteer_school_path(school_id: @school.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Format
 
+	%tbody
+		- num = 1
+		- @volunteer_schools.each do |volunteer_school|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if volunteer_school.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to volunteer_school.volunteer.name, volunteer_path(volunteer_school.volunteer_id)
+				%td
+					- if volunteer_school.start
+						= volunteer_school.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if volunteer_school.end
+						= volunteer_school.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= link_to "Edit", edit_volunteer_school_path(volunteer_school, school_id: @school.id)
+			-num = num+1
+
+%br
+%h4 Students
+%small= link_to "Add Students", new_student_school_path(school_id: @school.id), class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Start Date
+			%th{:scope => "col"} End Date
+			%th{:scope => "col"} Time Period
+			%th{:scope => "col"} Academic Period
+			%th{:scope => "col"} Fees
+			%th{:scope => "col"} Format
+
+	%tbody
+		- num = 1
+		- @student_schools.each do |student_school|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td.active-block
+					- if student_school.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to student_school.student.name, student_path(student_school.student_id)
+				%td
+					- if student_school.start
+						= student_school.start.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td
+					- if student_school.end
+						= student_school.end.strftime("%B %d, %Y")
+					-else
+						= "-"
+				%td= student_school.time_period
+				%td= student_school.academic_period
+				%td= student_school.fees
+				%td= link_to "Edit", edit_student_school_path(student_school, school_id: @school.id)
+			-num = num+1
