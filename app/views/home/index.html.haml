@@ -3,105 +3,108 @@
 -# %h3 Remember: "Whatever you are, be a good one"
 
 %br
-.row
-  .col-md-3
-    %center
-      = link_to students_path do
-        .card.bg-light.mb-3{:style => "width: 15rem;"}
-          .card-body
-            %h3 Students
-            -# %p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
-            -# %a.card-link{:href => "#"} New Student
-  .col-md-3
-    %center
-      = link_to sponsors_path do
-        .card.bg-light.mb-3{:style => "width: 15rem;"}
-          .card-body
-            %h3 Sponsor
-  .col-md-3
-    %center
-      = link_to members_path do
-        .card.bg-light.mb-3{:style => "width: 15rem;"}
-          .card-body
-            %h3 Members
-  .col-md-3
-    %center
-      = link_to volunteers_path do
-        .card.bg-light.mb-3{:style => "width: 15rem;"}
-          .card-body
-            %h3 Volunteer
-.row
-  .col-md-4
-    %center
-      = link_to coordinators_path do
-        .card.bg-light.mb-3{:style => "width: 15rem;"}
-          .card-body
-            %h3 Coordinator
-  .col-md-4
-    %center
-      = link_to mentors_path do
-        .card.bg-light.mb-3{:style => "width: 15rem;"}
-          .card-body
-            %h3 Mentors
-  .col-md-4
-    %center
-      = link_to employees_path do
-        .card.bg-light.mb-3{:style => "width: 15rem;"}
-          .card-body
-            %h3 Employees
-%hr
+%br
 
-.row
-  .col-md-4
-    %center
-      = link_to schools_path do
-        .card.bg-light.mb-3{:style => "width: 15rem;"}
-          .card-body
-            %h3 Schools
-  .col-md-4
-    %center
-      = link_to supports_path do
-        .card.bg-light.mb-3{:style => "width: 15rem;"}
-          .card-body
-            %h3 After School Support
-  .col-md-4
-    %center
-      = link_to workplaces_path do
-        .card.bg-light.mb-3{:style => "width: 15rem;"}
-          .card-body
-            %h3 Workplaces
+.home
+  .row
+    .col-md-3
+      %center
+        = link_to students_path do
+          .card.bg-light.mb-3{:style => "width: 15rem;"}
+            .card-body
+              %h3 Students
+              -# %p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+              -# %a.card-link{:href => "#"} New Student
+    .col-md-3
+      %center
+        = link_to sponsors_path do
+          .card.bg-light.mb-3{:style => "width: 15rem;"}
+            .card-body
+              %h3 Sponsor
+    .col-md-3
+      %center
+        = link_to members_path do
+          .card.bg-light.mb-3{:style => "width: 15rem;"}
+            .card-body
+              %h3 Members
+    .col-md-3
+      %center
+        = link_to volunteers_path do
+          .card.bg-light.mb-3{:style => "width: 15rem;"}
+            .card-body
+              %h3 Volunteer
+  .row
+    .col-md-4
+      %center
+        = link_to coordinators_path do
+          .card.bg-light.mb-3{:style => "width: 15rem;"}
+            .card-body
+              %h3 Coordinator
+    .col-md-4
+      %center
+        = link_to mentors_path do
+          .card.bg-light.mb-3{:style => "width: 15rem;"}
+            .card-body
+              %h3 Mentors
+    .col-md-4
+      %center
+        = link_to employees_path do
+          .card.bg-light.mb-3{:style => "width: 15rem;"}
+            .card-body
+              %h3 Employees
+  %hr
 
-%hr
-.row
-  .col-md-6
-    %center
-      = link_to programs_path do
-        .card.bg-light.mb-3{:style => "width: 15rem;"}
-          .card-body
-            %h3 Programs
-  .col-md-6
-    %center
-      = link_to designations_path do
-        .card.bg-light.mb-3{:style => "width: 15rem;"}
-          .card-body
-            %h3 Designations
+  .row
+    .col-md-4
+      %center
+        = link_to schools_path do
+          .card.bg-light.mb-3{:style => "width: 15rem;"}
+            .card-body
+              %h3 Schools
+    .col-md-4
+      %center
+        = link_to supports_path do
+          .card.bg-light.mb-3{:style => "width: 15rem;"}
+            .card-body
+              %h3 After School Support
+    .col-md-4
+      %center
+        = link_to workplaces_path do
+          .card.bg-light.mb-3{:style => "width: 15rem;"}
+            .card-body
+              %h3 Workplaces
+
+  %hr
+  .row
+    .col-md-6
+      %center
+        = link_to programs_path do
+          .card.bg-light.mb-3{:style => "width: 15rem;"}
+            .card-body
+              %h3 Programs
+    .col-md-6
+      %center
+        = link_to designations_path do
+          .card.bg-light.mb-3{:style => "width: 15rem;"}
+            .card-body
+              %h3 Designations
 
 
--# %p= link_to "Students", students_path
--# %p= link_to "Sponsors", sponsors_path
--# %p= link_to "Members", members_path
--# %p= link_to "Volunteers", volunteers_path
--# %p= link_to "Coordinators", coordinators_path
--# %p= link_to "Mentors", mentors_path
--# %p= link_to "Employees", employees_path
--#
--# %br
--#
--# %p= link_to "Schools", schools_path
--# %p= link_to "After School Support", supports_path
--# %p= link_to "Workplaces", workplaces_path
--#
--# %br
--#
--# %p= link_to "Programs", programs_path
--# %p= link_to "Designations", designations_path
+  -# %p= link_to "Students", students_path
+  -# %p= link_to "Sponsors", sponsors_path
+  -# %p= link_to "Members", members_path
+  -# %p= link_to "Volunteers", volunteers_path
+  -# %p= link_to "Coordinators", coordinators_path
+  -# %p= link_to "Mentors", mentors_path
+  -# %p= link_to "Employees", employees_path
+  -#
+  -# %br
+  -#
+  -# %p= link_to "Schools", schools_path
+  -# %p= link_to "After School Support", supports_path
+  -# %p= link_to "Workplaces", workplaces_path
+  -#
+  -# %br
+  -#
+  -# %p= link_to "Programs", programs_path
+  -# %p= link_to "Designations", designations_path

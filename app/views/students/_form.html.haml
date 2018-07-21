@@ -1,34 +1,56 @@
 .card
   .card-body
-    .form.container 
+    .form.container
       = simple_form_for(@student) do |f|
         = f.error_notification
         .form-inputs
-          = f.input :name
-          = f.input :gender, as: :radio_buttons, collection: [['male', 'Male'], ['female', 'Female']], label_method: :second, value_method: :first, required: true
-          = f.input :dob, as: :date, html5: true
-          = f.input :doj, as: :date, html5: true
-          = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
-          = f.input :dol, as: :date, html5: true
-          %br
-          = f.input :grade
-          %br
-          = f.input :contact_1
-          = f.input :contact_2
-          = f.input :contact_3
+          .row
+            .col
+              = f.input :name
+              = f.input :dob, as: :date, html5: true
+            .col
+              = f.input :gender, as: :radio_buttons, collection: [['male', 'Male'], ['female', 'Female']], label_method: :second, value_method: :first, required: true
+            .col
+              = f.input :category, as: :radio_buttons, collection: [['st', 'ST'], ['sc', 'SC'], ['obc', 'OBC'], ['general', 'General']], label_method: :second, value_method: :first, required: true
+          .row
+            .col
+              = f.input :doj, as: :date, html5: true
+            .col
+              = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
+            .col
+              = f.input :dol, as: :date, html5: true
+
+          .row
+            .col
+              = f.input :grade, label: "Current Class/Col.Year&Sem"
+            .col
+              = f.input :contact_1, label: "Contact #1"
+          .row
+            .col
+              = f.input :contact_2, label: "Contact #2"
+            .col
+              = f.input :contact_3, label: "Contact #3"
           = f.input :email
           = f.input :address
           / = f.input :city
           / = f.input :state
-          = f.input :society
-          = f.input :country, :as => :string
-          = f.input :pincode
-
-          = f.input :fathers_name
-          = f.input :fathers_occupation
-          = f.input :mothers_name
-          = f.input :mothers_occupation
-          = f.input :category, as: :radio_buttons, collection: [['st', 'ST'], ['sc', 'SC'], ['obc', 'OBC'], ['general', 'General']], label_method: :second, value_method: :first, required: true
+          .row
+            .col
+              = f.input :society
+            .col
+              = f.input :country, :as => :string
+            .col
+              = f.input :pincode
+          .row
+            .col
+              = f.input :fathers_name
+            .col
+              = f.input :fathers_occupation
+          .row
+            .col
+              = f.input :mothers_name
+            .col
+              = f.input :mothers_occupation
 
           / Probably Useless
           / = f.input :village_id
@@ -39,6 +61,10 @@
           / = f.input :mentor_id
           / = f.input :sponsor_id
           / = f.input :coordinator_id
-
+        %br
         .form-actions
-          = f.button :submit, class: "btn btn-submit btn-lg"
+          .row
+            .col
+            .col
+              = f.button :submit, class: "btn btn-submit btn-lg"
+            .col

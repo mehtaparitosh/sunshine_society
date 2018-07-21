@@ -1,21 +1,41 @@
 .card
   .card-body
-    .form.container 
+    .form.container
       = simple_form_for(@mentor) do |f|
         = f.error_notification
         .form-inputs
-          = f.input :name
-          = f.input :gender, as: :radio_buttons, collection: [['male', 'Male'], ['female', 'Female']], label_method: :second, value_method: :first, required: true
-          = f.input :dob, as: :date, html5: true
-          = f.input :doj, as: :date, html5: true
-          = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
-          = f.input :dol, as: :date, html5: true
-          = f.input :contact
-          = f.input :email
+          .row
+            .col
+              = f.input :name
+            .col
+              = f.input :gender, as: :radio_buttons, collection: [['male', 'Male'], ['female', 'Female']], label_method: :second, value_method: :first, required: true
+            .col
+              = f.input :dob, as: :date, html5: true
+          .row
+            .col
+              = f.input :doj, as: :date, html5: true
+            .col
+              = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
+            .col
+              = f.input :dol, as: :date, html5: true
+          .row
+            .col
+              = f.input :contact
+            .col
+              = f.input :email
           = f.input :address
           / = f.input :city
           / = f.input :state
-          = f.input :country, :as => :string
-          = f.input :pincode
+          .row
+            .col
+              = f.input :pincode
+            .col
+              = f.input :country, :as => :string
+        %br
+
         .form-actions
-          = f.button :submit, class: "btn btn-submit btn-lg"
+          .row
+            .col
+            .col
+              = f.button :submit, class: "btn btn-submit btn-lg"
+            .col

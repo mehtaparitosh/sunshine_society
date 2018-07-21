@@ -31,8 +31,27 @@
      // border: none;
      // background-color:transparent;
   }
-  *:focus {
-    outline-color: #efc244;
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+    outline-color: #efc244 !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(239,194,68, 0.6) !important;
+    border-color: #efc244 !important;
+    outline: none !important;
   }
 
   $brand-primary: #efc244;
@@ -144,8 +163,19 @@ fieldset[disabled] .btn-submit.active {
    }
  }
 
+ /*-------------------------------------*/
+ /* Home PAGE */
+ /*-------------------------------------*/
 
-
+ .home  {
+   .card:hover{
+     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(109,117,124, 0.6) !important;
+   }
+   a {
+     color: #353a3f;
+     text-decoration: none;
+   }
+ }
 
 
 

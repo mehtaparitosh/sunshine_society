@@ -4,9 +4,19 @@
       = simple_form_for(@support) do |f|
         = f.error_notification
         .form-inputs
-          = f.input :name
+          .row
+            .col
+              = f.input :name
+            .col
+              = f.input :contact
           = f.input :address
-          = f.input :contact
+
           = f.input :comments
+          %br
+
         .form-actions
-          = f.button :submit, class: "btn btn-submit btn-lg"
+          .row
+            .col
+            .col
+              = f.button :submit, class: "btn btn-submit btn-lg"
+            .col

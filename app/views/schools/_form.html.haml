@@ -1,21 +1,40 @@
 .card
   .card-body
-    .form.container 
+    .form.container
       = simple_form_for(@school) do |f|
         = f.error_notification
         .form-inputs
-          = f.input :name
+          .row
+            .col
+              = f.input :name
+            .col
+              = f.input :board
           = f.input :address
-          = f.input :contact_no
-          = f.input :contact_person
-          = f.input :contact_person_address
-          = f.input :contact_person_designation
-          = f.input :fees_type
-          = f.input :name_on_check
-          = f.input :board
-          = f.input :initial_class
-          = f.input :max_class
+          .row
+            .col
+              = f.input :contact_no, label: "Contact No."
+            .col
+              = f.input :contact_person, label: "Contact Person"
+            .col
+              = f.input :contact_person_designation, label: "Contact Person Designation"
+          = f.input :contact_person_address, label: "Contact Person Address"
+
+          .row
+            .col
+              = f.input :fees_type
+            .col
+              = f.input :name_on_check
+          .row
+            .col
+              = f.input :initial_class
+            .col
+              = f.input :max_class
           = f.input :comments
+        %br
 
         .form-actions
-          = f.button :submit, class: "btn btn-submit btn-lg"
+          .row
+            .col
+            .col
+              = f.button :submit, class: "btn btn-submit btn-lg"
+            .col
