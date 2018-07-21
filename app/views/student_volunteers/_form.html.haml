@@ -1,20 +1,30 @@
 .card
   .card-body
-    .form.container 
+    .form.container
       = simple_form_for(@student_volunteer) do |f|
         = f.error_notification
         .form-inputs
           = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
-          = f.input :start, as: :date, html5: true
-          = f.input :end, as: :date, html5: true
-          = f.input :student_id ,:collection => @students,:label_method => :collection_values,:value_method => :id, prompt: "Select Student ID", :label => "Student ID" ,:include_blank => false
-          = f.input :volunteer_id ,:collection => @volunteers,:label_method => :collection_values,:value_method => :id, prompt: "Select Volunteer's ID", :label => "Volunteer's ID" ,:include_blank => false
+          .row
+            .col
+              = f.input :start, as: :date, html5: true
+            .col
+              = f.input :end, as: :date, html5: true
+          .row
+            .col
+              = f.input :student_id ,:collection => @students,:label_method => :collection_values,:value_method => :id, prompt: "Select Student ID", :label => "Student ID" ,:include_blank => false
+            .col
+              = f.input :volunteer_id ,:collection => @volunteers,:label_method => :collection_values,:value_method => :id, prompt: "Select Volunteer's ID", :label => "Volunteer's ID" ,:include_blank => false
 
         .form-actions
         %br
-          -if @student
-            = f.button :submit, name: "student_id", value: @student.id, value: "Submit", class: "btn btn-submit btn-lg"
-          - elsif @volunteer
-            = f.button :submit, name: "volunteer_id", value: @volunteer.id, value: "Submit", class: "btn btn-submit btn-lg"
-          - else
-            = f.button :submit, class: "btn btn-submit btn-lg"
+          .row
+            .col
+            .col
+              -if @student
+                = f.button :submit, name: "student_id", value: @student.id, value: "Submit", class: "btn btn-submit btn-lg"
+              - elsif @volunteer
+                = f.button :submit, name: "volunteer_id", value: @volunteer.id, value: "Submit", class: "btn btn-submit btn-lg"
+              - else
+                = f.button :submit, class: "btn btn-submit btn-lg"
+            .col

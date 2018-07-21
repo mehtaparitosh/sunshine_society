@@ -5,9 +5,9 @@
 	%h4= "#{@coordinator.co_id}: #{@coordinator.name}"
 - else
 - if params[:student_id]
-	= link_to "Cancel", student_path(@student), class: "btn btn-danger"
+	= link_to "Cancel", student_path(@student), class: "btn btn-danger btn-sm"
 - elsif params[:coordinator_id]
-	= link_to "Cancel", coordinator_path(@coordinator), class: "btn btn-danger"
+	= link_to "Cancel", coordinator_path(@coordinator), class: "btn btn-danger btn-sm"
 %br
 %br
 = render 'form'

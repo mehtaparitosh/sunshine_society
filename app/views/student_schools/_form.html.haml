@@ -1,23 +1,38 @@
 .card
   .card-body
-    .form.container 
+    .form.container
       = simple_form_for(@student_school) do |f|
         = f.error_notification
         .form-inputs
           = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
-          = f.input :start, as: :date, html5: true
-          = f.input :end, as: :date, html5: true
-          = f.input :student_id ,:collection => @students,:label_method => :collection_values,:value_method => :id, prompt: "Select Student ID", :label => "Student ID" ,:include_blank => false
-          = f.input :school_id ,:collection => @schools,:label_method => :name,:value_method => :id, prompt: "Select School", :label => "School" ,:include_blank => false
-          = f.input :time_period
-          = f.input :academic_period
-          = f.input :fees
+          .row
+            .col
+              = f.input :start, as: :date, html5: true
+            .col
+              = f.input :end, as: :date, html5: true
+          .row
+            .col
+              = f.input :student_id ,:collection => @students,:label_method => :collection_values,:value_method => :id, prompt: "Select Student ID", :label => "Student ID" ,:include_blank => false
+            .col
+              = f.input :school_id ,:collection => @schools,:label_method => :name,:value_method => :id, prompt: "Select School", :label => "School" ,:include_blank => false
+          .row
+            .col
+              = f.input :time_period
+            .col
+              = f.input :academic_period
+          .row
+            .col
+              = f.input :fees
 
         .form-actions
         %br
-          -if @student
-            = f.button :submit, name: "student_id", value: @student.id, value: "Submit", class: "btn btn-submit btn-lg"
-          - elsif @school
-            = f.button :submit, name: "school_id", value: @school.id, value: "Submit", class: "btn btn-submit btn-lg"
-          - else
-            = f.button :submit, class: "btn btn-submit btn-lg"
+          .row
+            .col
+            .col
+              -if @student
+                = f.button :submit, name: "student_id", value: @student.id, value: "Submit", class: "btn btn-submit btn-lg"
+              - elsif @school
+                = f.button :submit, name: "school_id", value: @school.id, value: "Submit", class: "btn btn-submit btn-lg"
+              - else
+                = f.button :submit, class: "btn btn-submit btn-lg"
+            .col

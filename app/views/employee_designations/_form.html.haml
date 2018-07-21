@@ -5,15 +5,25 @@
         = f.error_notification
         .form-inputs
           = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
-          = f.input :start, as: :date, html5: true
-          = f.input :end, as: :date, html5: true
-          = f.input :employee_id ,:collection => @employees,:label_method => :collection_values,:value_method => :id, prompt: "Select Employee ID", :label => "Employee ID" ,:include_blank => false
-          = f.input :designation_id ,:collection => @designations,:label_method => :name,:value_method => :id, prompt: "Select Designation", :label => "Designation" ,:include_blank => false
+          .row
+            .col
+              = f.input :start, as: :date, html5: true
+            .col
+              = f.input :end, as: :date, html5: true
+          .row
+            .col
+              = f.input :employee_id ,:collection => @employees,:label_method => :collection_values,:value_method => :id, prompt: "Select Employee ID", :label => "Employee ID" ,:include_blank => false
+            .col
+              = f.input :designation_id ,:collection => @designations,:label_method => :name,:value_method => :id, prompt: "Select Designation", :label => "Designation" ,:include_blank => false
         .form-actions
         %br
-          -if @employee
-            = f.button :submit, name: "employee_id", value: @employee.id, value: "Submit", class: "btn btn-submit btn-lg"
-          - elsif @designation
-            = f.button :submit, name: "designation_id", value: @designation.id, value: "Submit", class: "btn btn-submit btn-lg"
-          - else
-            = f.button :submit, class: "btn btn-submit btn-lg"
+          .row
+            .col
+            .col
+              -if @employee
+                = f.button :submit, name: "employee_id", value: @employee.id, value: "Submit", class: "btn btn-submit btn-lg"
+              - elsif @designation
+                = f.button :submit, name: "designation_id", value: @designation.id, value: "Submit", class: "btn btn-submit btn-lg"
+              - else
+                = f.button :submit, class: "btn btn-submit btn-lg"
+            .col

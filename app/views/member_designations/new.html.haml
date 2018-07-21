@@ -5,9 +5,9 @@
 	%h4= "#{@designation.name}"
 - else
 - if params[:member_id]
-	= link_to "Cancel", member_path(@member), class: "btn btn-danger"
+	= link_to "Cancel", member_path(@member), class: "btn btn-danger btn-sm"
 - elsif params[:designation_id]
-	= link_to "Cancel", designation_path(@designation), class: "btn btn-danger"
+	= link_to "Cancel", designation_path(@designation), class: "btn btn-danger btn-sm"
 %br
 %br
 = render 'form'

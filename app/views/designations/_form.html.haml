@@ -3,8 +3,15 @@
     .form.container
       = simple_form_for(@designation) do |f|
         = f.error_notification
-        .form-inputs
-          = f.input :name
-          = f.input :comments
+        .row
+          .col
+            = f.input :name
+        .row
+          .col
+            = f.input :comments
         .form-actions
-          = f.button :submit, class: "btn btn-submit btn-lg"
+          .row
+            .col
+            .col
+              = f.button :submit, class: "btn btn-submit btn-lg"
+            .col
