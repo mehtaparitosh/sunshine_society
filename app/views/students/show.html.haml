@@ -21,6 +21,11 @@
 				.general-info
 					%p= "Name: #{@student.name}"
 					%p= "Gender: #{@student.gender.capitalize}"
+					%p
+						- if @student.age
+							= "Age: #{@student.age}"
+						- else
+							= "Age: #{@student.cal_age(@student.dob)}"
 					-if @student.dob
 						%p= "Date of Birth: #{@student.dob.strftime("%B %d, %Y")}"
 					-else
@@ -30,7 +35,6 @@
 					-else
 						%p= "Date of Joining: - "
 					%p= "Category: #{@student.category.capitalize}"
-					%p= "Current Program: #{}"
 					%p= "Primary Contact: #{@student.contact_1}"
 
 
@@ -61,7 +65,6 @@
 					%p= "Mother's Name: #{@student.mothers_name}"
 					%p= "Mother's Occupation: #{@student.mothers_occupation}"
 					%p= "Current Class/Col.Year&Sem: #{@student.grade}"
-					%p= "Current School: #{}"
 %br
 %h4 Coordinators
 %small= link_to "Add Coordinator", new_student_coordinator_path(student_id: @student.id), class: "btn btn-secondary btn-sm"

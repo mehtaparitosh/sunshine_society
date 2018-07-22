@@ -26,13 +26,20 @@
 					- else
 						%span.table-danger Inactive
 				%td= link_to volunteer.name, volunteer_path(volunteer)
-				%td= "Run Code"
+				%td
+					- if volunteer.age
+						= volunteer.age
+					- else
+						= volunteer.cal_age(volunteer.dob)
 				%td= volunteer.gender.capitalize
 				%td
 					- if volunteer.active
 						= volunteer.doj.strftime("%B %d, %Y")
 					- else
-						= volunteer.dol.strftime("%B %d, %Y")
+						- if volunteer.dol
+							= volunteer.dol.strftime("%B %d, %Y")
+						- else
+							= "-"
 				%td= volunteer.days_available
 				%td= "+#{volunteer.contact}"
 			-num = num+1

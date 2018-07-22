@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_20_124117) do
+ActiveRecord::Schema.define(version: 2018_07_22_062751) do
 
   create_table "coordinators", force: :cascade do |t|
     t.string "co_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2018_07_20_124117) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "dol"
+    t.integer "age"
   end
 
   create_table "designations", force: :cascade do |t|
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(version: 2018_07_20_124117) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "dol"
+    t.integer "age"
   end
 
   create_table "member_designations", force: :cascade do |t|
@@ -119,6 +121,7 @@ ActiveRecord::Schema.define(version: 2018_07_20_124117) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "dol"
+    t.integer "age"
   end
 
   create_table "mentors", force: :cascade do |t|
@@ -138,6 +141,7 @@ ActiveRecord::Schema.define(version: 2018_07_20_124117) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "dol"
+    t.integer "age"
   end
 
   create_table "programs", force: :cascade do |t|
@@ -196,6 +200,7 @@ ActiveRecord::Schema.define(version: 2018_07_20_124117) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "dol"
+    t.integer "age"
   end
 
   create_table "student_coordinators", force: :cascade do |t|
@@ -320,6 +325,7 @@ ActiveRecord::Schema.define(version: 2018_07_20_124117) do
     t.date "dol"
     t.integer "coordinator_id"
     t.string "grade"
+    t.integer "age"
     t.index ["coordinator_id"], name: "index_students_on_coordinator_id"
   end
 
@@ -380,6 +386,7 @@ ActiveRecord::Schema.define(version: 2018_07_20_124117) do
     t.datetime "updated_at", null: false
     t.date "dol"
     t.string "days_available"
+    t.integer "age"
   end
 
   create_table "workplaces", force: :cascade do |t|

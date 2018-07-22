@@ -8,7 +8,10 @@
             .col
               = f.input :name
             .col
+              = f.input :age
+            .col
               = f.input :gender, as: :radio_buttons, collection: [['male', 'Male'], ['female', 'Female']], label_method: :second, value_method: :first, required: true
+
             .col
               = f.input :dob, as: :date, html5: true
           .row

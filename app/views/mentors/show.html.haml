@@ -20,7 +20,11 @@
 				%h3 General Information
 				%p= "Name: #{@mentor.name}"
 				%p= "Gender: #{@mentor.gender.capitalize}"
-
+				%p
+					- if @mentor.age
+						= "Age: #{@mentor.age}"
+					- else
+						= "Age: #{@mentor.cal_age(@mentor.dob)}"
 				-if @mentor.dob
 					%p= "Date of Birth: #{@mentor.dob.strftime("%B %d, %Y")}"
 				-else

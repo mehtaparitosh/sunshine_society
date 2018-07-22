@@ -12,12 +12,14 @@
           .col
             = f.input :dob, as: :date, html5: true
           .col
-            = f.input :doj, as: :date, html5: true
+            = f.input :age
         .row
           .col
-            = f.input :dol, as: :date, html5: true
+            = f.input :doj, as: :date, html5: true
           .col
             = f.input :active, as: :radio_buttons, collection: [['true', 'Active'], ['false', 'Non Active']], label_method: :second, value_method: :first, required: true
+          .col
+            = f.input :dol, as: :date, html5: true
         .row
           .col
             = f.input :contact

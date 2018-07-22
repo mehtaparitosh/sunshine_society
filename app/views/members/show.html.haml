@@ -21,8 +21,11 @@
 				%h3 General Information
 				%p= "Name: #{@member.name}"
 				%p= "Gender: #{@member.gender.capitalize}"
-				%p= "Member Type: #{@member.kind}"
-
+				%p
+					- if @member.age
+						= "Age: #{@member.age}"
+					- else
+						= "Age: #{@member.cal_age(@member.dob)}"
 				-if @member.dob
 					%p= "Date of Birth: #{@member.dob.strftime("%B %d, %Y")}"
 				-else
@@ -46,6 +49,7 @@
 					%p= "Date of Leaving: #{@member.dol}"
 			.col-md-6
 				%h3 Additional Information
+				%p= "Member Type: #{@member.kind}"
 				%p= "Effective Till: #{@member.effective_till}"
 				%p= "E-Mail: #{@member.email}"
 				%p= "Contact: #{@member.contact}"

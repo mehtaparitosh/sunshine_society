@@ -25,12 +25,19 @@
 					- else
 						%span.table-danger Inactive
 				%td= link_to employee.name, employee_path(employee)
-				%td= "Run Code"
+				%td
+					- if employee.age
+						= employee.age
+					- else
+						= employee.cal_age(employee.dob)
 				%td= employee.gender.capitalize
 				%td
 					- if employee.active
 						= employee.doj.strftime("%B %d, %Y")
 					- else
-						= employee.dol.strftime("%B %d, %Y")
+						- if employee.dol
+							= employee.dol.strftime("%B %d, %Y")
+						- else
+							= "-"
 				%td= "+#{employee.contact}"
 			-num = num+1

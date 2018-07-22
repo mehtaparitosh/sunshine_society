@@ -26,13 +26,20 @@
 					- else
 						%span.table-danger Inactive
 				%td= link_to sponsor.name, sponsor_path(sponsor)
-				%td= "Run Code"
+				%td
+					- if sponsor.age
+						= sponsor.age
+					- else
+						= sponsor.cal_age(sponsor.dob)
 				%td= sponsor.sponsor_type
 				%td= sponsor.gender.capitalize
 				%td
 					- if sponsor.active
 						= sponsor.doj.strftime("%B %d, %Y")
 					- else
-						= sponsor.dol.strftime("%B %d, %Y")
+						- if sponsor.dol
+							= sponsor.dol.strftime("%B %d, %Y")
+						- else
+							= "-"
 				%td= "+#{sponsor.contact}"
 			-num = num+1

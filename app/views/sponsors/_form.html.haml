@@ -9,7 +9,10 @@
               = f.input :name
               = f.input :dob, as: :date, html5: true
             .col
+              = f.input :age
+            .col
               = f.input :gender, as: :radio_buttons, collection: [['male', 'Male'], ['female', 'Female']], label_method: :second, value_method: :first, required: true
+
             .col
               = f.input :sponsor_type, as: :radio_buttons, collection: [['SEP', 'SEP'], ['EACH', 'EACH'], ['CEP', 'CEP'], ['general', 'General'], ['emergency fund', 'Emergency Fund']], label_method: :second, value_method: :first, required: true
           .row

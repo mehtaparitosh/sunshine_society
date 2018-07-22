@@ -12,6 +12,7 @@
 			%th{:scope => "col"} Age
 			%th{:scope => "col"} Gender
 			%th{:scope => "col"} Member Type
+			%th{:scope => "col"} DOJ/DOL
 			%th{:scope => "col"} Effective Till
 			%th{:scope => "col"} Contact
 	%tbody
@@ -26,9 +27,21 @@
 					- else
 						%span.table-danger Inactive
 				%td= link_to member.name, member_path(member)
-				%td= "Run Code"
+				%td
+					- if member.age
+						= member.age
+					- else
+						= member.cal_age(member.dob)
 				%td= member.gender.capitalize
 				%td= member.kind
+				%td
+					- if member.active
+						= member.doj.strftime("%B %d, %Y")
+					- else
+						- if member.dol
+							= member.dol.strftime("%B %d, %Y")
+						- else
+							= "-"
 				%td
 					- if member.effective_till
 						= member.effective_till.strftime("%B %d, %Y")

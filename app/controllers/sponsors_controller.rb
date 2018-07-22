@@ -47,7 +47,7 @@ class SponsorsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @sponsor.destroy
     respond_to do |format|
@@ -64,6 +64,7 @@ class SponsorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sponsor_params
-      params.require(:sponsor).permit(:sp_id, :name, :gender, :dob, :doj, :contact, :email, :address, :country, :active, :dol, :pincode, :sponsor_type)
+      params.require(:sponsor).permit(:sp_id, :name, :gender, :dob, :doj, :contact, :email, :address, :country, :active, :dol, :pincode, :sponsor_type,
+        :age)
     end
 end

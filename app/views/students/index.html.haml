@@ -27,13 +27,20 @@
 					- else
 						%span.table-danger Inactive
 				%td= link_to student.name, student_path(student)
-				%td= "Run Code"
+				%td
+					- if student.age
+						= student.age
+					- else
+						= student.cal_age(student.dob)
 				%td= student.gender.capitalize
 				%td
 					- if student.active
 						= student.doj.strftime("%B %d, %Y")
 					- else
-						= student.dol.strftime("%B %d, %Y")
+						- if student.dol
+							= student.dol.strftime("%B %d, %Y")
+						- else
+							= "-"
 				%td= student.grade
 				%td= student.society
 				%td= "+#{student.contact_1}"

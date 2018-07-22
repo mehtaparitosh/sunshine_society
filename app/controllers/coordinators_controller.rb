@@ -45,7 +45,7 @@ class CoordinatorsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @coordinator.destroy
     respond_to do |format|
@@ -62,6 +62,7 @@ class CoordinatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coordinator_params
-      params.require(:coordinator).permit(:co_id, :name, :gender, :dob, :doj, :contact, :email, :address, :country, :active, :dol, :pincode)
+      params.require(:coordinator).permit(:co_id, :name, :gender, :dob, :doj, :contact, :email, :address, :country, :active, :dol, :pincode,
+				:age)
     end
 end

@@ -50,7 +50,7 @@ class StudentsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @student.destroy
     respond_to do |format|
@@ -68,7 +68,8 @@ class StudentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
       params.require(:student).permit(:st_id, :name, :gender, :dob, :doj, :contact_1, :contact_2, :contact_3, :email, :address, :country, :pincode,
-                                        :grade, :active, :fathers_name, :fathers_occupation, :mothers_name, :mothers_occupation, :society, :category, :dol)
+                                        :grade, :active, :fathers_name, :fathers_occupation, :mothers_name, :mothers_occupation, :society, :category, :dol,
+                                          :age)
     end
 
 end

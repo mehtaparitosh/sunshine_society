@@ -10,12 +10,16 @@
             .col
               = f.input :gender, as: :radio_buttons, collection: [['male', 'Male'], ['female', 'Female']], label_method: :second, value_method: :first, required: true
             .col
+              = f.input :age
+            .col
               = f.input :dob, as: :date, html5: true
           .row
             .col
               = f.input :kind, label: "Member Type"
             .col
               = f.input :effective_till, as: :date, html5: true
+            .col
+              = f.input :voting_right, as: :radio_buttons, collection: [['true', 'Yes'], ['false', 'No']], label_method: :second, value_method: :first, required: true
           .row
             .col
               = f.input :doj, as: :date, html5: true

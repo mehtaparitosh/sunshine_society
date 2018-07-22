@@ -45,7 +45,7 @@ class VolunteersController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @volunteer.destroy
     respond_to do |format|
@@ -62,6 +62,7 @@ class VolunteersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def volunteer_params
-      params.require(:volunteer).permit(:vol_id, :name, :gender, :dob, :doj, :contact, :email, :address, :country, :active, :occupation, :dol, :days_available, :pincode)
+      params.require(:volunteer).permit(:vol_id, :name, :gender, :dob, :doj, :contact, :email, :address, :country, :active, :occupation, :dol, :days_available, :pincode,
+        :age)
     end
 end

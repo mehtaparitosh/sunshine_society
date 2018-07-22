@@ -25,12 +25,19 @@
 					- else
 						%span.table-danger Inactive
 				%td= link_to mentor.name, mentor_path(mentor)
-				%td= "Run Code"
+				%td
+					- if mentor.age
+						= mentor.age
+					- else
+						= mentor.cal_age(mentor.dob)
 				%td= mentor.gender.capitalize
 				%td
 					- if mentor.active
 						= mentor.doj.strftime("%B %d, %Y")
 					- else
-						= mentor.dol.strftime("%B %d, %Y")
+						- if mentor.dol
+							= mentor.dol.strftime("%B %d, %Y")
+						- else
+							= "-"
 				%td= "+#{mentor.contact}"
 			-num = num+1

@@ -21,7 +21,11 @@
 				%h3 General Information
 				%p= "Name: #{@volunteer.name}"
 				%p= "Gender: #{@volunteer.gender.capitalize}"
-				%p= "Days Available: #{@volunteer.days_available}"
+				%p
+					- if @volunteer.age
+						= "Age: #{@volunteer.age}"
+					- else
+						= "Age: #{@volunteer.cal_age(@volunteer.dob)}"
 				-if @volunteer.dob
 					%p= "Date of Birth: #{@volunteer.dob.strftime("%B %d, %Y")}"
 				-else
@@ -45,6 +49,7 @@
 					%p= "Date of Leaving: #{@volunteer.dol}"
 			.col-md-6
 				%h3 Additional Information
+				%p= "Days Available: #{@volunteer.days_available}"
 				%p= "Occupation: #{@volunteer.occupation}"
 				%p= "E-Mail: #{@volunteer.email}"
 				%p= "Contact: #{@volunteer.contact}"

@@ -45,7 +45,7 @@ class MentorsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @mentor.destroy
     respond_to do |format|
@@ -62,6 +62,7 @@ class MentorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mentor_params
-      params.require(:mentor).permit(:men_id, :name, :gender, :dob, :doj, :contact, :email, :address, :country, :active, :dol, :pincode)
+      params.require(:mentor).permit(:men_id, :name, :gender, :dob, :doj, :contact, :email, :address, :country, :active, :dol, :pincode,
+        :age)
     end
 end

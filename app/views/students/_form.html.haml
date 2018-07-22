@@ -12,6 +12,8 @@
               = f.input :gender, as: :radio_buttons, collection: [['male', 'Male'], ['female', 'Female']], label_method: :second, value_method: :first, required: true
             .col
               = f.input :category, as: :radio_buttons, collection: [['st', 'ST'], ['sc', 'SC'], ['obc', 'OBC'], ['general', 'General']], label_method: :second, value_method: :first, required: true
+            .col
+              = f.input :age
           .row
             .col
               = f.input :doj, as: :date, html5: true
