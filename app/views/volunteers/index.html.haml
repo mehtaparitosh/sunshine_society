@@ -1,7 +1,38 @@
 %h1.w3-center VOLUNTEERS
-
-= link_to "Back", root_path 
-|
-= link_to "Add Volunteer", new_volunteer_path
-- @volunteers.each do |volunteer|
-	%p= link_to volunteer.name, volunteer_path(volunteer)
+%br
+%small= link_to 'Back', root_path, class: "btn btn-danger btn-sm"
+%small= link_to "Add Volunteer", new_volunteer_path, class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} ID
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Age
+			%th{:scope => "col"} Gender
+			%th{:scope => "col"} DOJ/DOL
+			%th{:scope => "col"} Days Available
+			%th{:scope => "col"} Contact
+	%tbody
+		- num = 1
+		- @volunteers.each do |volunteer|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td= volunteer.vol_id
+				%td.active-block
+					- if volunteer.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to volunteer.name, volunteer_path(volunteer)
+				%td= "Run Code"
+				%td= volunteer.gender.capitalize
+				%td
+					- if volunteer.active
+						= volunteer.doj.strftime("%B %d, %Y")
+					- else
+						= volunteer.dol.strftime("%B %d, %Y")
+				%td= volunteer.days_available
+				%td= "+#{volunteer.contact}"
+			-num = num+1

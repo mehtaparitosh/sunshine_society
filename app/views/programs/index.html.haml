@@ -1,8 +1,18 @@
-%h.w3-center1 PROGRAMS
-= link_to "Back", root_path
-|
-= link_to "Add Program", new_program_path
+%h1.w3-center PROGRAMS
 %br
-- @programs.each do |program|
-	%p= link_to program.name, program_path(program)
-
+%small= link_to 'Back', root_path, class: "btn btn-danger btn-sm"
+%small= link_to "Add Program", new_program_path, class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Program
+			%th{:scope => "col"} Description
+	%tbody
+		- num = 1
+		- @programs.each do |program|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td= link_to "#{program.full_form} (#{program.name})", program_path(program)
+				%td= program.comments
+			-num = num+1

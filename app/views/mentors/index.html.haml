@@ -1,7 +1,36 @@
 %h1.w3-center MENTORS
-= link_to 'Back', root_path
-|
-= link_to "New Mentor", new_mentor_path
 %br
-- @mentors.each do |mentor|
-	%p= link_to mentor.name, mentor_path(mentor)
+%small= link_to 'Back', root_path, class: "btn btn-danger btn-sm"
+%small= link_to "New Mentor", new_mentor_path, class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} ID
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Age
+			%th{:scope => "col"} Gender
+			%th{:scope => "col"} DOJ/DOL
+			%th{:scope => "col"} Contact
+	%tbody
+		- num = 1
+		- @mentors.each do |mentor|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td= mentor.men_id
+				%td.active-block
+					- if mentor.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to mentor.name, mentor_path(mentor)
+				%td= "Run Code"
+				%td= mentor.gender.capitalize
+				%td
+					- if mentor.active
+						= mentor.doj.strftime("%B %d, %Y")
+					- else
+						= mentor.dol.strftime("%B %d, %Y")
+				%td= "+#{mentor.contact}"
+			-num = num+1

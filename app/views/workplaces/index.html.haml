@@ -1,7 +1,20 @@
 %h1.w3-center WORKPLACES
-
-= link_to "Back", root_path
-|
-= link_to "New Workplace", new_workplace_path
-- @workplaces.each do |workplace|
-	%p= link_to workplace.name, workplace_path(workplace)
+%br
+%small= link_to 'Back', root_path, class: "btn btn-danger btn-sm"
+%small= link_to "Add Workplace", new_workplace_path, class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} Program
+			%th{:scope => "col"} Contact
+			%th{:scope => "col"} Description
+	%tbody
+		- num = 1
+		- @workplaces.each do |workplace|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td= link_to workplace.name, workplace_path(workplace)
+				%td= workplace.contact
+				%td= workplace.comments
+			-num = num+1

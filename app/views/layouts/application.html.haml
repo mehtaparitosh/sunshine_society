@@ -34,10 +34,16 @@
       -#   %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
       -#   %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
 
-
-
-
-    .container
+    .container.cont
       %p.notice.w3-panel.w3-center= notice
       %p.alert.w3-panel.w3-center= alert
       = yield
+      .before
+
+    %footer.footer
+      %p
+        &copy; 2018
+        =link_to "Sunshine Society", "http://www.sunshinesociety.in/", target: :_blank
+        |
+        Created with Love By
+        = link_to "Paritosh", "https://mehtaparitosh.github.io/", target: :_blank

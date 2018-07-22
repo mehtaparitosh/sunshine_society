@@ -1,8 +1,36 @@
 %h1.w3-center COORDINATORS
-
-= link_to 'Back', root_path
-|
-= link_to "New Coordinator", new_coordinator_path
-
-- @coordinators.each do |coordinator|
-	%p= link_to coordinator.name, coordinator_path(coordinator)
+%br
+%small= link_to 'Back', root_path, class: "btn btn-danger btn-sm"
+%small= link_to "New Coordinator", new_coordinator_path, class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} ID
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Age
+			%th{:scope => "col"} Gender
+			%th{:scope => "col"} DOJ/DOL
+			%th{:scope => "col"} Contact
+	%tbody
+		- num = 1
+		- @coordinators.each do |coordinator|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td= coordinator.co_id
+				%td.active-block
+					- if coordinator.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to coordinator.name, coordinator_path(coordinator)
+				%td= "Run Code"
+				%td= coordinator.gender.capitalize
+				%td
+					- if coordinator.active
+						= coordinator.doj.strftime("%B %d, %Y")
+					- else
+						= coordinator.dol.strftime("%B %d, %Y")
+				%td= "+#{coordinator.contact}"
+			-num = num+1

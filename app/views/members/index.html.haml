@@ -1,9 +1,38 @@
 %h1.w3-center MEMBERS
-
-= link_to 'Back', root_path
-|
-= link_to 'New Member', new_member_path
 %br
-- @members.each do |member|
-	%p= link_to member.name, member_path(member)
-
+%small= link_to 'Back', root_path, class: "btn btn-danger btn-sm"
+%small= link_to "New Member", new_member_path, class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} ID
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Age
+			%th{:scope => "col"} Gender
+			%th{:scope => "col"} Member Type
+			%th{:scope => "col"} Effective Till
+			%th{:scope => "col"} Contact
+	%tbody
+		- num = 1
+		- @members.each do |member|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td= member.mem_id
+				%td.active-block
+					- if member.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to member.name, member_path(member)
+				%td= "Run Code"
+				%td= member.gender.capitalize
+				%td= member.kind
+				%td
+					- if member.effective_till
+						= member.effective_till.strftime("%B %d, %Y")
+					- else
+						= "-"
+				%td= "+#{member.contact}"
+			-num = num+1

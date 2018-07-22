@@ -1,7 +1,38 @@
 %h1.w3-center SPONSORS
-
-= link_to "Back", root_path
-|
-= link_to "Add Sponsor", new_sponsor_path
-- @sponsors.each do |sponsor|
-	%p= link_to sponsor.name, sponsor_path(sponsor)
+%br
+%small= link_to 'Back', root_path, class: "btn btn-danger btn-sm"
+%small= link_to "New Sponsor", new_sponsor_path, class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} ID
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Age
+			%th{:scope => "col"} Sponosr Type
+			%th{:scope => "col"} Gender
+			%th{:scope => "col"} DOJ/DOL
+			%th{:scope => "col"} Contact
+	%tbody
+		- num = 1
+		- @sponsors.each do |sponsor|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td= sponsor.sp_id
+				%td.active-block
+					- if sponsor.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to sponsor.name, sponsor_path(sponsor)
+				%td= "Run Code"
+				%td= sponsor.sponsor_type
+				%td= sponsor.gender.capitalize
+				%td
+					- if sponsor.active
+						= sponsor.doj.strftime("%B %d, %Y")
+					- else
+						= sponsor.dol.strftime("%B %d, %Y")
+				%td= "+#{sponsor.contact}"
+			-num = num+1

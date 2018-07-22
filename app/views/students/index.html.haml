@@ -1,9 +1,40 @@
 %h1.w3-center STUDENTS
-
-
-= link_to "Back", root_path	
-|
-= link_to "New Student", new_student_path
-
-- @students.each do |student|
-	%p= link_to student.name, student_path(student)
+%br
+%small= link_to 'Back', root_path, class: "btn btn-danger btn-sm"
+%small= link_to "Add Student", new_student_path, class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} ID
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Age
+			%th{:scope => "col"} Gender
+			%th{:scope => "col"} Category
+			%th{:scope => "col"} Class/Col.Year&Sem
+			%th{:scope => "col"} Society
+			%th{:scope => "col"} Contact
+	%tbody
+		- num = 1
+		- @students.each do |student|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td= student.st_id
+				%td.active-block
+					- if student.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to student.name, student_path(student)
+				%td= "Run Code"
+				%td= student.gender.capitalize
+				%td
+					- if student.active
+						= student.doj.strftime("%B %d, %Y")
+					- else
+						= student.dol.strftime("%B %d, %Y")
+				%td= student.grade
+				%td= student.society
+				%td= "+#{student.contact_1}"
+			-num = num+1

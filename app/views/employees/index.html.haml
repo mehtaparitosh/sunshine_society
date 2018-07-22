@@ -1,9 +1,36 @@
 %h1.w3-center EMPLOYEES
-
-= link_to 'Back', root_path
-|
-= link_to 'Add Employee', new_employee_path
 %br
-- @employees.each do |employee|
-	%p= link_to employee.name, employee_path(employee)
-
+%small= link_to 'Back', root_path, class: "btn btn-danger btn-sm"
+%small= link_to "New Employee", new_employee_path, class: "btn btn-secondary btn-sm"
+%table.table.table-hover.table-bordered{:style => "margin-top: 8px;"}
+	%thead.thead-light
+		%tr
+			%th{:scope => "col"} #
+			%th{:scope => "col"} ID
+			%th{:scope => "col"} Status
+			%th{:scope => "col"} Name
+			%th{:scope => "col"} Age
+			%th{:scope => "col"} Gender
+			%th{:scope => "col"} DOJ/DOL
+			%th{:scope => "col"} Contact
+	%tbody
+		- num = 1
+		- @employees.each do |employee|
+			%tr
+				%th{:scope => "row"}= "#{num}"
+				%td= employee.em_id
+				%td.active-block
+					- if employee.active
+						%span.table-success Active
+					- else
+						%span.table-danger Inactive
+				%td= link_to employee.name, employee_path(employee)
+				%td= "Run Code"
+				%td= employee.gender.capitalize
+				%td
+					- if employee.active
+						= employee.doj.strftime("%B %d, %Y")
+					- else
+						= employee.dol.strftime("%B %d, %Y")
+				%td= "+#{employee.contact}"
+			-num = num+1
