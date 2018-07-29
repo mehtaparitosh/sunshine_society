@@ -5,7 +5,7 @@ class Volunteer < ApplicationRecord
   	"#{vol_id} : #{name}"
   end
 
-	validates :vol_id, presence: true
+	# validates :vol_id, presence: true
 	validates :name, presence: true
 	validates :gender, presence: true
 	# validates :dob, presence: true

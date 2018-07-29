@@ -5,7 +5,7 @@ class Mentor < ApplicationRecord
   	"#{men_id} : #{name}"
   end
 
-	validates :men_id, presence: true
+	# validates :men_id, presence: true
 	validates :name, presence: true
 	validates :gender, presence: true
 	# validates :dob, presence: true

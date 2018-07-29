@@ -5,7 +5,7 @@ class Sponsor < ApplicationRecord
   	"#{sp_id} : #{name}"
   end
 
-	validates :sp_id, presence: true
+	# validates :sp_id, presence: true
 	validates :name, presence: true
 	validates :gender, presence: true
 	# validates :dob, presence: true

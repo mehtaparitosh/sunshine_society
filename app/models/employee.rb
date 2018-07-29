@@ -7,7 +7,7 @@ class Employee < ApplicationRecord
   	"#{em_id} : #{name}"
   end
 
-	validates :em_id, presence: true
+	# validates :em_id, presence: true
 	validates :name, presence: true
 	validates :gender, presence: true
 	# validates :dob, presence: true

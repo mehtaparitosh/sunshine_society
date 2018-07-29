@@ -5,7 +5,7 @@ class Coordinator < ApplicationRecord
   	"#{co_id} : #{name}"
   end
 
-	validates :co_id, presence: true
+	# validates :co_id, presence: true	
 	validates :name, presence: true
 	validates :gender, presence: true
 	# validates :dob, presence: true

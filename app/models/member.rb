@@ -6,7 +6,7 @@ class Member < ApplicationRecord
   	"#{mem_id} : #{name}"
   end
 
-	validates :mem_id, presence: true
+	# validates :mem_id, presence: true
 	validates :name, presence: true
 	validates :gender, presence: true
 	# validates :dob, presence: true
